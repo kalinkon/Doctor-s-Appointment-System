@@ -28,6 +28,7 @@ Route::get('/patient', function () {
 });
 Route::prefix('patient')-> group(function (){
 	Route::get('profile', ['uses' => 'PatientProfileController@index', 'as' => 'patient.profile']);
+	Route::get('register', ['uses' => 'PatientRegisterController@index', 'as' => 'patient.register']);
 });
 Auth::routes();
 
