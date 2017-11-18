@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/doctor', function () {
+    return view('doctor.dashboard');
+});
+
+Route::prefix('doctor')-> group(function (){
+	Route::get('profile', ['uses' => 'DoctorProfileController@index', 'as' => 'doctor.profile']);
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
