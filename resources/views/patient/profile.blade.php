@@ -4,7 +4,7 @@
     <div class="container">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Doctor's Profile</h3>
+            <h3 class="panel-title">Patient's Profile</h3>
           </div>
           <div class="panel-body">
             <form class="form-horizontal">
@@ -21,52 +21,40 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2">Department</label>
+                <label class="col-sm-2">Age:</label>
                 <div class="col-sm-10">
-                  <p class="form-control-static">Oncology</p>
+                  <p class="form-control-static">28</p>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2">Degree:</label>
+                <label class="col-sm-2">Blood group:</label>
                 <div class="col-sm-10">
-                  <p class="form-control-static">MBBS</p>
+                  <p class="form-control-static">O+</p>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2">Chamber open time:</label>
+                <label class="col-sm-2">Address:</label>
                 <div class="col-sm-10">
-                  <table class="table table-bordered">
-                    <thead>
-                    	<tr>
-                    		<th>Day</th>
-                    		<th>Time</th>
-                    	</tr>
-                    </thead>
-                    <tbody>
-                    	<tr>
-                    		<td>Sunday</td>
-                    		<td>10am - 11am</td>
-                    	</tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-               <div class="form-group">
-                <label class="col-sm-2">Doctor's fee:</label>
-                <div class="col-sm-10">
-                  <p class="form-control-static">500 taka only</p>
+                  <p class="form-control-static">kaliakoir,savar,dhaka</p>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2">Approximate appointment time</label>
+                <label class="col-sm-2">Phone number:</label>
                 <div class="col-sm-10">
-                  <p class="form-control-static">5pm 11-19-2017</p>
+                  <p class="form-control-static">+88017171717171</p>
                 </div>
               </div>
               <div class="form-group">
-              	<div class="col-sm-12" align="center">
-              		<button class="btn btn-primary btn-md text-center">Reserve an appointment</button>
-              	</div>
+                <label class="col-sm-2">Show up pecentage:</label>
+                <div class="col-sm-10">
+                  <p class="form-control-static">78%</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2">Total appointment taken:</label>
+                <div class="col-sm-10">
+                  <p class="form-control-static">50</p>
+                </div>
               </div>
             </form>
           </div>
