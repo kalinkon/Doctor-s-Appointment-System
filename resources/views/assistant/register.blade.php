@@ -24,12 +24,6 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="address" class="col-sm-2 control-label">Address</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="address" placeholder="address">
-			    </div>
-			  </div>
-			  <div class="form-group">
 			    <label for="password" class="col-sm-2 control-label">Password</label>
 			    <div class="col-sm-10">
 			      <input type="password" class="form-control" id="password" placeholder="Password">
@@ -41,7 +35,16 @@
 			      <input type="password" class="form-control" id="password" placeholder="Confirm Password">
 			    </div>
 			  </div>
-			 
+			  <div class="form-group">
+			    <label for="department" class="col-sm-2 control-label">Select Department</label>
+			    <div class="col-sm-3">
+			      <select class="form-control">
+			        <option>Medicine</option>
+			        <option>Pathology</option>
+			        <option>Oncology</option>
+			      </select>
+			    </div>
+			  </div>
 			  <div class="form-group">
 			    <label for="dob" class="col-sm-2 control-label">Date of Birth</label>
 			    <div class="col-sm-3">
@@ -56,6 +59,18 @@
 			        <option>Female</option>
 			        <option>Other</option>
 			      </select>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="degrees" class="col-sm-2 control-label">Degrees/Education</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="degrees" placeholder="for example: MBBS, FCPS">
+			    </div>   
+			  </div>
+			  <div class="form-group">
+			    <label for="reg_no" class="col-sm-2 control-label">Registration number</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="reg_no" placeholder="registration number">
 			    </div>
 			  </div>
 			  <div class="form-group">

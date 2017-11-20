@@ -30,6 +30,14 @@ Route::prefix('patient')-> group(function (){
 	Route::get('profile', ['uses' => 'PatientProfileController@index', 'as' => 'patient.profile']);
 	Route::get('register', ['uses' => 'PatientRegisterController@index', 'as' => 'patient.register']);
 });
+
+Route::get('/assistant', function () {
+    return view('assistant.dashboard');
+});
+Route::prefix('assistant')-> group(function (){
+	Route::get('profile', ['uses' => 'AssistantProfileController@index', 'as' => 'assistant.profile']);
+	Route::get('register', ['uses' => 'AssistantRegisterController@index', 'as' => 'assistant.register']);
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
