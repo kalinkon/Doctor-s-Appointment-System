@@ -35,16 +35,7 @@
 			      <input type="password" class="form-control" id="password" placeholder="Confirm Password">
 			    </div>
 			  </div>
-			  <div class="form-group">
-			    <label for="department" class="col-sm-2 control-label">Select Department</label>
-			    <div class="col-sm-3">
-			      <select class="form-control">
-			        <option>Medicine</option>
-			        <option>Pathology</option>
-			        <option>Oncology</option>
-			      </select>
-			    </div>
-			  </div>
+			 
 			  <div class="form-group">
 			    <label for="dob" class="col-sm-2 control-label">Date of Birth</label>
 			    <div class="col-sm-3">
@@ -67,12 +58,7 @@
 			      <input type="text" class="form-control" id="degrees" placeholder="for example: MBBS, FCPS">
 			    </div>   
 			  </div>
-			  <div class="form-group">
-			    <label for="reg_no" class="col-sm-2 control-label">Registration number</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="reg_no" placeholder="registration number">
-			    </div>
-			  </div>
+
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-10">
 			      <button type="submit" class="btn btn-success">Submit</button>

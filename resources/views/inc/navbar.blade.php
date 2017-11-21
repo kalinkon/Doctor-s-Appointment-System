@@ -26,8 +26,35 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    Register
+                                     <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ route('patient.register') }}">
+                                            as a patient
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('doctor.register') }}">
+                                            as a doctor
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('assistant.register') }}">
+                                            as an assistant
+                                        </a>
+                                    </li>
+                                </ul>
+                              <li>
+                                <a href="{{ route('authentication.login') }}">Login</a>
+                              </li>  
+                            </li>
+                            
+                           
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">

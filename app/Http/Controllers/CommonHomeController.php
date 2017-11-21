@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AssistantRegisterController extends Controller
+class CommonHomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class AssistantRegisterController extends Controller
      */
     public function index()
     {
-        return view('assistant.register');
+        return view('commonHome');
     }
 
     /**

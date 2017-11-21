@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('commonHome');
 });
 
 Route::get('/doctor', function () {
@@ -38,6 +38,11 @@ Route::prefix('assistant')-> group(function (){
 	Route::get('profile', ['uses' => 'AssistantProfileController@index', 'as' => 'assistant.profile']);
 	Route::get('register', ['uses' => 'AssistantRegisterController@index', 'as' => 'assistant.register']);
 });
+Route::prefix('authentication')-> group(function (){
+	Route::get('login', ['uses' => 'AuthenticationLoginController@index', 'as' => 'authentication.login']);
+	
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
