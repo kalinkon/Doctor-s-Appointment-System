@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name','role','mobileNo', 'email', 'password','date_of_birth',
     ];
 
     /**
@@ -26,4 +26,44 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+
+
+
+    public function user_activation(){
+        return $this->hasOne(User_activation::class);
+    }
+
+
+    public function hasRole($roles){
+        return in_array($this->role, $roles);
+    }
+
+    public function isDoctor(){
+        return $this->role == 'Doctor';
+    }
+
+    public function isAdmin(){
+        return $this->role == 'Admin';
+    }
+
+    public function isPatient(){
+        return $this->role == 'Patient';
+    }
+
+    public function isAssistant(){
+        return $this->role == 'Assistant';
+    }
+
+
+//    public function verifications(){
+//        return $this->hasMany(Verification::class);
+//    }
+
+    public function patients(){
+        return $this->hasOne(Patients::class);
+    }
+
+
 }
