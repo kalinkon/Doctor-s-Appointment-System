@@ -14,8 +14,17 @@ class CreateAssistantsTable extends Migration
     public function up()
     {
         Schema::create('assistants', function (Blueprint $table) {
+
+
             $table->increments('id');
+
+            $table->integer('userId');
+            $table->integer('doctorId');
+            $table->string('education');
+            $table->string('isActive');
+
             $table->timestamps();
+
         });
     }
 

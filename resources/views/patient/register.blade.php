@@ -3,8 +3,9 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="panel-heading">Register</div>
+
 			<div class="panel-body">
+				<div class="panel-heading" >Register</div>
 				<form class="form-horizontal" method= "POST" action="{{ route('registerPatient') }}">
 					{{ csrf_field() }}
 
@@ -23,8 +24,8 @@
 							<input name="email" type="email" class="form-control" id="email" value="{{old('email')}}" required autofocus>
 							@if ($errors->has('email'))
 								<span class="help-block">
-							<strong>{{ $errors->first('email') }}</strong>
-						</span>
+									<strong>{{ $errors->first('email') }}</strong>
+								</span>
 							@endif
 						</div>
 					</div>
@@ -45,12 +46,6 @@
 					</div>
 
 
-					{{--<div class="form-group">--}}
-					{{--<label for="address" class="col-sm-2 control-label">Address</label>--}}
-					{{--<div class="col-sm-10">--}}
-					{{--<input type="text" class="form-control" id="address" placeholder="address" required>--}}
-					{{--</div>--}}
-					{{--</div>--}}
 
 
 					<div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
@@ -59,8 +54,8 @@
 							<input type="password" name="password" class="form-control" id="password"  required>
 							@if ($errors->has('password'))
 								<span class="help-block">
-							<strong>{{ $errors->first('password') }}</strong>
-						</span>
+									<strong>{{ $errors->first('password') }}</strong>
+								</span>
 							@endif
 						</div>
 					</div>
@@ -73,27 +68,33 @@
 						</div>
 					</div>
 
+					<div class="form-group">
+						<label for="address" class="col-sm-2 control-label">Address</label>
+						<div class="col-sm-10">
+							<input type="text" name="address" class="form-control" id="address" placeholder="address" required>
+						</div>
+					</div>
 
 
 					<div class="form-group">
 						<label for="dob" class="col-sm-2 control-label">Date of Birth</label>
 							<div class="col-sm-3">
-								<input type='date' name="date_of_birth" class="form-control">
+								<input type='date' name="date_of_birth" class="form-control" required>
 							</div>
 					</div>
 
 
 
-					{{--<div class="form-group">--}}
-					{{--<label for="gender" class="col-sm-2 control-label">Choose Gender</label>--}}
-					{{--<div class="col-sm-3">--}}
-					{{--<select class="form-control">--}}
-					{{--<option>Male</option>--}}
-					{{--<option>Female</option>--}}
-					{{--<option>Other</option>--}}
-					{{--</select>--}}
-					{{--</div>--}}
-					{{--</div>--}}
+					<div class="form-group">
+						<label for="gender" class="col-sm-2 control-label">Choose Gender</label>
+						<div class="col-sm-3">
+							<select class="form-control" name="gender" required>
+								<option>Male</option>
+								<option>Female</option>
+								<option>Other</option>
+							</select>
+						</div>
+					</div>
 
 
 

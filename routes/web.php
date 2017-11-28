@@ -18,10 +18,10 @@ Route::get('/', function () {
 Route::get('/doctor', function () {
     return view('doctor.dashboard');
 });
-Route::prefix('doctor')-> group(function (){
-	Route::get('profile', ['uses' => 'DoctorProfileController@index', 'as' => 'doctor.profile']);
-	Route::get('register', ['uses' => 'DoctorRegisterController@index', 'as' => 'doctor.register']);
-});
+//Route::prefix('doctor')-> group(function (){
+//	Route::get('profile', ['uses' => 'DoctorProfileController@index', 'as' => 'doctor.profile']);
+//	Route::get('register', ['uses' => 'DoctorRegisterController@index', 'as' => 'doctor.register']);
+//});
 
 //Route::get('/patient', function () {
 //    return view('patient.dashboard');
@@ -37,10 +37,10 @@ Route::prefix('doctor')-> group(function (){
 Route::get('/assistant', function () {
     return view('assistant.dashboard');
 });
-Route::prefix('assistant')-> group(function (){
-	Route::get('profile', ['uses' => 'AssistantProfileController@index', 'as' => 'assistant.profile']);
-	Route::get('register', ['uses' => 'AssistantRegisterController@index', 'as' => 'assistant.register']);
-});
+//Route::prefix('assistant')-> group(function (){
+//	Route::get('profile', ['uses' => 'AssistantProfileController@index', 'as' => 'assistant.profile']);
+//	Route::get('register', ['uses' => 'AssistantRegisterController@index', 'as' => 'assistant.register']);
+//});
 Route::prefix('authentication')-> group(function (){
 	Route::get('login', ['uses' => 'AuthenticationLoginController@index', 'as' => 'authentication.login']);
 	

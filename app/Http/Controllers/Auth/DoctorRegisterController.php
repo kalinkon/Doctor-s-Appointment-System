@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Patients;
+use App\Doctors;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class PatientRegisterController extends Controller
+class DoctorRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -54,8 +54,11 @@ class PatientRegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'mobileNo' => 'required|regex:/(01)[0-9]{9}/|unique:users',
-            'gender' => 'required',
-            'address'=> 'required',
+//            'gender' => 'required',
+//            'registrationNo'=> 'required',
+//            'educationalDegrees' => 'required',
+////            'specializationDepartment' => 'required',
+//            'chamberAddress' => 'required',
 
         ]);
     }
@@ -72,7 +75,7 @@ class PatientRegisterController extends Controller
             'name' => $data['name'],
             'date_of_birth'=>$data['date_of_birth'],
             'email' => $data['email'],
-            'role' => 'Patient',
+            'role' => 'Doctor',
             'gender'=> $data['gender'],
             'mobileNo' => $data['mobileNo'],
             'password' => bcrypt($data['password']),
@@ -82,20 +85,31 @@ class PatientRegisterController extends Controller
 
         ]);
 
-//        $user = User::create([
-//            'user_name' => $data['user_name'],
-//            'email' => $data['email'],
-//            'password' => bcrypt($data['password']),
-//        ]);
+/**        •	id
+•	userId
+•	registrationNo.
+    •	educationalDegrees
+•	specializationDepartment
+•	specializationDepartmentId
+•	chamberAddress
+•	chamberAddressGeoLocation
+•	visitfee
+•	isActiveForSchedulilng
+•	isChamberCurrentlyOpen
 
+**/
 
-
-        $patients = Patients::create([
+        $doctors = Doctors::create([
             'userId'=> $user->id,
-            'address' => $data['address'],
-            'totalAppointmentCount'=> '0',
-            'noShowUpCount'=>'0',
-            'showUpCount'=>'0',
+            'registrationNo'=>$data['registrationNo'],
+            'educationalDegrees' => $data['educationalDegrees'],
+            'specializationDepartment' => $data['specializationDepartment'],
+            'chamberAddress' => $data['chamberAddress'],
+            'chamberAddressGeoLocation' => '.999,.9999',
+            'visitFee'=> '500',
+            'isActiveForScheduling' => 'false',
+            'isChamberCurrentlyOpen' =>'false',
+
         ]);
         return $user;
     }
@@ -106,6 +120,6 @@ class PatientRegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('patient.register');
+        return view('doctor.register');
     }
 }

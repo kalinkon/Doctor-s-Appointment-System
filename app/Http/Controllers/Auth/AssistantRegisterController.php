@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Patients;
+use App\Assistants;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class PatientRegisterController extends Controller
+class AssistantRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -54,8 +54,6 @@ class PatientRegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'mobileNo' => 'required|regex:/(01)[0-9]{9}/|unique:users',
-            'gender' => 'required',
-            'address'=> 'required',
 
         ]);
     }
@@ -89,13 +87,13 @@ class PatientRegisterController extends Controller
 //        ]);
 
 
-
-        $patients = Patients::create([
+        $assistants = Assistants::create([
             'userId'=> $user->id,
+            'doctorId'=>'10',
             'address' => $data['address'],
-            'totalAppointmentCount'=> '0',
-            'noShowUpCount'=>'0',
-            'showUpCount'=>'0',
+            'education'=> $data['education'],
+            'isActive'=>'false',
+
         ]);
         return $user;
     }
@@ -106,6 +104,6 @@ class PatientRegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('patient.register');
+        return view('assistant.register');
     }
 }

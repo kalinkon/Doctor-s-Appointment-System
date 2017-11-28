@@ -1,0 +1,11 @@
+ //Patient Registration Routes
+        $this->get('registerP', 'Auth\PatientRegisterController@showRegistrationForm')->name('registerPatient');
+        $this->post('registerP', 'Auth\PatientRegisterController@register');
+
+        //Doctor Registration Routes
+        $this->get('registerD', 'Auth\DoctorRegisterController@showRegistrationForm')->name('registerDoctor');
+        $this->post('registerD', 'Auth\DoctorRegisterController@register');
+
+        //Assistant Registration Routes
+        $this->get('registerA', 'Auth\AssistantRegisterController@showRegistrationForm')->name('registerAssistant');
+        $this->post('registerA', 'Auth\AssistantRegisterController@register');

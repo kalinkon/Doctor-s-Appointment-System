@@ -39,12 +39,12 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('doctor.register') }}">
+                                        <a href="{{ route('registerDoctor') }}">
                                             as a doctor
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('assistant.register') }}">
+                                        <a href="{{ route('registerAssistant') }}">
                                             as an assistant
                                         </a>
                                     </li>

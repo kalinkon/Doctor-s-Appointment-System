@@ -32,12 +32,13 @@ class CreateDoctorsTable extends Migration
             $table->integer('userId');
             $table->integer('registrationNo');
             $table->string('educationalDegrees');
-            $table->string('specializationDepartmentId');
+            $table->string('specializationDepartment');
+            $table->integer('specializationDepartmentId');
             $table->string('chamberAddress');
             $table->string('chamberAddressGeoLocation');
-            $table->string('visitfee');
-            $table->string('isActiveForSchedulilng');
-            $table->string('isChamberCurrentlyOpen');
+            $table->string('visitFee');
+            $table->boolean('isActiveForScheduling');
+            $table->boolean('isChamberCurrentlyOpen');
         });
     }
 
