@@ -50,7 +50,7 @@
                                     </li>
                                 </ul>
                               <li>
-                                <a href="{{ route('authentication.login') }}">Login</a>
+                                <a href="{{ route('login') }}">Login</a>
                               </li>  
                             </li>
                             

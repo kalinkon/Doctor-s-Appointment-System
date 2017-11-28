@@ -4,6 +4,7 @@
 <div class="container">
 	<div class="">
 		<div class="well">
+			<div class="panel-heading" align="center" ><strong>Doctor's Registration</strong></div>
 			<form class="form-horizontal"method= "POST" action="{{ route('registerDoctor') }}">
 				{{ csrf_field() }}
 			  <div class="form-group">
@@ -110,7 +111,7 @@
 			  <div class="form-group">
 			    <label for="reg_no" class="col-sm-2 control-label">Registration number</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="reg_no" placeholder="registration number" name="registrationNo" required >
+			      <input type="number" class="form-control" id="reg_no" placeholder="registration number" name="registrationNo" required >
 			    </div>
 			  </div>
 

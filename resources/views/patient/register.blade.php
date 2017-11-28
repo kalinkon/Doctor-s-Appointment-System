@@ -2,10 +2,10 @@
 
 @section('content')
 	<div class="container">
-		<div class="row">
+		<div class="">
 
-			<div class="panel-body">
-				<div class="panel-heading" >Register</div>
+			<div class="well">
+				<div class="panel-heading" align="center" ><strong>Patient's Registration</strong></div>
 				<form class="form-horizontal" method= "POST" action="{{ route('registerPatient') }}">
 					{{ csrf_field() }}
 
