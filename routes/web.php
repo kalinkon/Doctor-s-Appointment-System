@@ -34,6 +34,7 @@ Route::get('/doctor', function () {
 
 
 
+
 Route::get('/assistant', function () {
     return view('assistant.dashboard');
 });
@@ -49,3 +50,4 @@ Route::prefix('authentication')-> group(function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/auth/success', 'SuccessController@index')->name('success');

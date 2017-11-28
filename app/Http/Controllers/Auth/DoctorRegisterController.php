@@ -7,6 +7,9 @@ use App\Doctors;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class DoctorRegisterController extends Controller
 {
@@ -29,7 +32,7 @@ class DoctorRegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/auth/success';
 
     /**
      * Create a new controller instance.
@@ -79,8 +82,8 @@ class DoctorRegisterController extends Controller
             'gender'=> $data['gender'],
             'mobileNo' => $data['mobileNo'],
             'password' => bcrypt($data['password']),
-            'isActivated'=> 'true',
-            'isValid'=> 'true',
+            'isActivated'=> '1',
+            'isValid'=> '1',
 
 
         ]);
@@ -107,8 +110,8 @@ class DoctorRegisterController extends Controller
             'chamberAddress' => $data['chamberAddress'],
             'chamberAddressGeoLocation' => '.999,.9999',
             'visitFee'=> '500',
-            'isActiveForScheduling' => 'false',
-            'isChamberCurrentlyOpen' =>'false',
+            'isActiveForScheduling' => '0',
+            'isChamberCurrentlyOpen' =>'0',
 
         ]);
         return $user;
@@ -117,6 +120,15 @@ class DoctorRegisterController extends Controller
 //    {
 //        return view('patient.register');
 //    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        event(new Registered($user = $this->create($request->all())));
+//        $this->guard()->login($user);
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
 
     public function showRegistrationForm()
     {

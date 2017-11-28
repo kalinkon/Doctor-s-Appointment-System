@@ -7,6 +7,9 @@ use App\Assistants;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class AssistantRegisterController extends Controller
 {
@@ -24,12 +27,14 @@ class AssistantRegisterController extends Controller
 
     use RegistersUsers;
 
+
+
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/auth/success';
 
     /**
      * Create a new controller instance.
@@ -74,8 +79,8 @@ class AssistantRegisterController extends Controller
             'gender'=> $data['gender'],
             'mobileNo' => $data['mobileNo'],
             'password' => bcrypt($data['password']),
-            'isActivated'=> 'true',
-            'isValid'=> 'true',
+            'isActivated'=> '1',
+            'isValid'=> '1',
 
 
         ]);
@@ -92,7 +97,7 @@ class AssistantRegisterController extends Controller
             'doctorId'=>'10',
             'address' => $data['address'],
             'education'=> $data['education'],
-            'isActive'=>'false',
+            'isActive'=>'0',
 
         ]);
         return $user;
@@ -101,6 +106,14 @@ class AssistantRegisterController extends Controller
 //    {
 //        return view('patient.register');
 //    }
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        event(new Registered($user = $this->create($request->all())));
+//        $this->guard()->login($user);
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
 
     public function showRegistrationForm()
     {
