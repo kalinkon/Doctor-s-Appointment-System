@@ -130,4 +130,20 @@
 		}
 	</script>
 @endsection --}}
+@section('script')
 
+	<script type="text/javascript">
+        $(document).ready(function(){
+            $.ajaxSetup({
+                headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')}
+            });
+
+            $(function () {
+                $('#date_of_birth').datepicker({ changeYear: true, changeMonth:true, yearRange: "1980:"+new Date().getFullYear() });
+            });
+
+        });
+	</script>
+
+
+@endsection

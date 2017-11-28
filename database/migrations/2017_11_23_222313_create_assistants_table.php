@@ -21,6 +21,7 @@ class CreateAssistantsTable extends Migration
             $table->integer('userId');
             $table->integer('doctorId');
             $table->string('education');
+            $table->string('address');
             $table->string('isActive');
 
             $table->timestamps();

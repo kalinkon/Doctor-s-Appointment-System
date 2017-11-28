@@ -30,7 +30,7 @@
 			  <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 			    <label for="mobile" class="col-sm-2 control-label">Mobile number</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="mobile" placeholder="Mobile" name="mobileNo" required autofocus>
+			      <input type="number" class="form-control" id="mobile" placeholder="Mobile" name="mobileNo" required autofocus>
 					@if ($errors->has('mobileNo'))
 						<span class="help-block">
 							<strong>{{ $errors->first('mobileNo') }}</strong>
