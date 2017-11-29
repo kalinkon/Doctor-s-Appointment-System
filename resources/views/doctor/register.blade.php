@@ -1,4 +1,35 @@
 @extends('layouts.app')
+{{--@section('script')--}}
+
+	{{--<script type="text/javascript">--}}
+        {{--$(document).ready(function(){--}}
+            {{--$.ajaxSetup({--}}
+                {{--headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')}--}}
+            {{--});--}}
+
+{{--//            $(function () {--}}
+{{--//                $('#date_of_birth').datepicker({ changeYear: true, changeMonth:true, yearRange: "1980:"+new Date().getFullYear() });--}}
+{{--//            });--}}
+
+
+            {{--$.post("{{ URL::route('department.list') }}",{},function(data){--}}
+                {{--$('#department').html(data);--}}
+{{--//                departmentList();--}}
+            {{--});--}}
+
+			{{--function departmentList(){--}}
+			{{--$('#university_id').on('change', function(){--}}
+			{{--var university_id = $('#university_id option:selected').val();--}}
+			{{--$.post("{{ URL::route('department.list') }}",{university_id:university_id},function(data){--}}
+			{{--$('#department_list').html(data);--}}
+			{{--});--}}
+			{{--});--}}
+			{{--}--}}
+
+        {{--});--}}
+	{{--</script>--}}
+
+{{--@endsection--}}
 
 @section('content')
 <div class="container">
@@ -66,13 +97,13 @@
 			    <label for="department" class="col-sm-2 control-label">Select Department</label>
 			    <div class="col-sm-3">
 			      <select class="form-control" name="specializationDepartment">
-			        <option>Medicine</option>
-			        <option>Pathology</option>
-			        <option>Oncology</option>
+					  @foreach($departmentArray as $data)
+						  <option value="{{$data->id}}">{{$data->departmentName}}</option>
+					  @endforeach
+
 			      </select>
 			    </div>
 			  </div>
-
 
 
 				<div class="form-group">
@@ -137,14 +168,3 @@
 	</div>
 </div>
 @endsection
-
-{{-- @section('script')
-	<script type="text/javascript">
-		$(document).ready(function(){
-		    $(function () {
-		        $('#datetimepicker1').datepicker();
-		    });
-		}
-	</script>
-@endsection --}}
-

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\DB;
+use App\SpecializationDepartment;
 use App\User;
 use App\Doctors;
 use App\Http\Controllers\Controller;
@@ -102,11 +104,13 @@ class DoctorRegisterController extends Controller
 
 **/
 
+
         $doctors = Doctors::create([
             'userId'=> $user->id,
             'registrationNo'=>$data['registrationNo'],
             'educationalDegrees' => $data['educationalDegrees'],
-            'specializationDepartment' => $data['specializationDepartment'],
+            'specializationDepartmentId' => $data['specializationDepartment'],
+            'specializationDepartment'=>DB::table('specializationdepartment')->where('id', $data['specializationDepartment'])->value('departmentName'),
             'chamberAddress' => $data['chamberAddress'],
             'chamberAddressGeoLocation' => '.999,.9999',
             'visitFee'=> '500',

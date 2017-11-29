@@ -51,3 +51,28 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/auth/success', 'SuccessController@index')->name('success');
+
+Route::prefix('Department')-> group(function (){
+
+//    Route::get('/'  , ['uses' => 'UniversityController@index', 'as' => 'university.index']);
+
+    Route::post('list', ['uses' => 'DepartmentController@getDepartmentList', 'as' => 'department.list']);
+
+//    Route::get('create',['uses' => 'UniversityController@showUniversityCreateForm', 'as' => 'university.create'] );
+//
+//    Route::post('create',['uses' => 'UniversityController@storeUniversity', 'as' => 'university.store'] );
+//
+//    Route::get('edit/{id}',['uses' => 'UniversityController@edit', 'as' => 'university.edit'] );
+//
+//    Route::post('edit/{id}',['uses' => 'UniversityController@update', 'as' => 'university.update'] );
+//
+//    Route::get('delete/{id}',['uses' => 'UniversityController@destroy', 'as' => 'university.delete'] );
+//
+//    Route::get('show/{id}',['uses' => 'UniversityController@show', 'as' => 'university.show'] );
+//
+//
+//    Route::get('view',['uses' => 'UniversityController@showUniversityList', 'as' => 'university.view'] );
+//
+//    Route::post('view',['uses' => 'UniversityController@getUniversityListByLocation', 'as' => 'university.universityListByLocation'] );
+});
+

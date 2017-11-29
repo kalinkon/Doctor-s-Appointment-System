@@ -14,11 +14,13 @@ class Doctors extends Model
         'registrationNo',
         'educationalDegrees',
         'specializationDepartment',
+        'specializationDepartmentId',
         'chamberAddress',
         'chamberAddressGeoLocation',
         'VisitFee',
         'isActiveForScheduling',
         'isCurrentlyOpen',
+
     ];
 
 
