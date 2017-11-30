@@ -20,13 +20,14 @@ Route::get('/doctor', function () {
 });
 Route::prefix('doctor')-> group(function (){
 	Route::get('profile', ['uses' => 'DoctorProfileController@index', 'as' => 'doctor.profile']);
+    Route::get('dashboard', ['uses' => 'DoctorProfileController@dash', 'as' => 'doctor.dashboard']);
 //	Route::get('register', ['uses' => 'DoctorRegisterController@index', 'as' => 'doctor.register']);
     Route::get('list', ['uses' => 'DoctorProfileController@list', 'as' => 'doctor.list']);
 });
 
-//Route::get('/patient', function () {
-//    return view('patient.dashboard');
-//});
+Route::get('/patient', function () {
+    return view('patient.dashboard');
+});
 //Route::prefix('patient')-> group(function (){
 //	Route::get('profile', ['uses' => 'PatientProfileController@index', 'as' => 'patient.profile']);
 //	Route::get('register', ['uses' => 'PatientRegisterController@index', 'as' => 'patient.register']);

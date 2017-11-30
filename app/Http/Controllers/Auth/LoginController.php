@@ -60,4 +60,15 @@ class LoginController extends Controller
             $this->username() => [trans('Login failed: make sure your account is Activated')],
         ]);
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+
+        if( Auth::user()->role == 'Doctor') return Redirect()->route('doctor.dashboard');
+
+        if( Auth::user()->role  == 'Patient' ) return Redirect()->route('patient.dashboard');
+
+        if( Auth::user()->role == 'Assistant' ) return Redirect()->route('assistant.dashboard');
+
+    }
 }

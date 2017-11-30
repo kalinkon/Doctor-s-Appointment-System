@@ -27,6 +27,11 @@ class DoctorProfileController extends Controller
         return view('doctor.list')->with('doctors',$doctors);
     }
 
+    public function dash()
+    {
+        return view('doctor.dashboard');
+    }
+
 
 //    public function borrowed_list()
 //    {
