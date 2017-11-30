@@ -84,8 +84,8 @@ class DoctorRegisterController extends Controller
             'gender'=> $data['gender'],
             'mobileNo' => $data['mobileNo'],
             'password' => bcrypt($data['password']),
-            'isActivated'=> '1',
-            'isValid'=> '1',
+            'isActivated'=> true,
+            'isValid'=> true,
 
 
         ]);
@@ -106,16 +106,17 @@ class DoctorRegisterController extends Controller
 
 
         $doctors = Doctors::create([
-            'userId'=> $user->id,
+            'user_id'=> $user->id,
+            'doctorName'=> $user->name,
             'registrationNo'=>$data['registrationNo'],
             'educationalDegrees' => $data['educationalDegrees'],
-            'specializationDepartmentId' => $data['specializationDepartment'],
-            'specializationDepartment'=>DB::table('specializationdepartment')->where('id', $data['specializationDepartment'])->value('departmentName'),
+            'specializationDepartment_id' => $data['specializationDepartment'],
+            'specializationDepartment'=>DB::table('specialization_department')->where('id', $data['specializationDepartment'])->value('departmentName'),
             'chamberAddress' => $data['chamberAddress'],
             'chamberAddressGeoLocation' => '.999,.9999',
             'visitFee'=> '500',
-            'isActiveForScheduling' => '0',
-            'isChamberCurrentlyOpen' =>'0',
+            'isActiveForScheduling' => false,
+            'isChamberCurrentlyOpen' =>false,
 
         ]);
         return $user;

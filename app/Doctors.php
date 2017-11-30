@@ -8,16 +8,18 @@ use App\User;
 class Doctors extends Model
 {
     protected $table = 'doctors';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
-        'userId',
+        'user_id',
+        'doctorName',
         'registrationNo',
         'educationalDegrees',
         'specializationDepartment',
         'specializationDepartmentId',
         'chamberAddress',
         'chamberAddressGeoLocation',
-        'VisitFee',
+        'visitFee',
         'isActiveForScheduling',
         'isCurrentlyOpen',
 

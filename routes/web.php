@@ -18,10 +18,11 @@ Route::get('/', function () {
 Route::get('/doctor', function () {
     return view('doctor.dashboard');
 });
-//Route::prefix('doctor')-> group(function (){
-//	Route::get('profile', ['uses' => 'DoctorProfileController@index', 'as' => 'doctor.profile']);
+Route::prefix('doctor')-> group(function (){
+	Route::get('profile', ['uses' => 'DoctorProfileController@index', 'as' => 'doctor.profile']);
 //	Route::get('register', ['uses' => 'DoctorRegisterController@index', 'as' => 'doctor.register']);
-//});
+    Route::get('list', ['uses' => 'DoctorProfileController@list', 'as' => 'doctor.list']);
+});
 
 //Route::get('/patient', function () {
 //    return view('patient.dashboard');

@@ -61,6 +61,18 @@
 					</div>
 				</div>
 
+				<div class="form-group">
+					<label for="doctorId" class="col-sm-2 control-label">Select Doctor</label>
+					<div class="col-sm-3">
+						<select class="form-control" name="doctorId">
+							@foreach($doctorList as $data)
+								<option value="{{$data->id}}">{{$data->doctorName}}</option>
+							@endforeach
+
+						</select>
+					</div>
+				</div>
+
 
 				<div class="form-group">
 					<label for="dob" class="col-sm-2 control-label">Date of Birth</label>

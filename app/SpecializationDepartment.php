@@ -15,7 +15,7 @@ use App\Student;
 
 class SpecializationDepartment extends Model
 {
-    protected $table = 'specializationdepartment';
+    protected $table = 'specialization_department';
     protected $fillable = ['departmentName' ];
 
     public function departments(){

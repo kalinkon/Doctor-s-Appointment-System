@@ -18,8 +18,14 @@ class CreateAssistantsTable extends Migration
 
             $table->increments('id');
 
-            $table->integer('userId');
-            $table->integer('doctorId');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->ondelete('cascade');
+            $table->integer('doctor_id')->unsigned();
+            $table->foreign('doctor_id')
+                ->references('id')->on('doctors')
+                ->ondelete('cascade');
             $table->string('education');
             $table->string('address');
             $table->string('isActive');

@@ -79,8 +79,8 @@ class AssistantRegisterController extends Controller
             'gender'=> $data['gender'],
             'mobileNo' => $data['mobileNo'],
             'password' => bcrypt($data['password']),
-            'isActivated'=> '1',
-            'isValid'=> '1',
+            'isActivated'=> true,
+            'isValid'=> true,
 
 
         ]);
@@ -93,11 +93,11 @@ class AssistantRegisterController extends Controller
 
 
         $assistants = Assistants::create([
-            'userId'=> $user->id,
-            'doctorId'=>'10',
+            'user_id'=> $user->id,
+            'doctor_id'=>$data['doctorId'],
             'address' => $data['address'],
             'education'=> $data['education'],
-            'isActive'=>'0',
+            'isActive'=>true,
 
         ]);
         return $user;

@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+
+    protected $primaryKey = 'id';
     use Notifiable;
 
     /**
@@ -72,6 +74,10 @@ class User extends Authenticatable
     public function patients(){
         return $this->hasOne(Patients::class);
     }
+
+//    public function doctors(){
+//        return $this->hasOne(Doctors::class);
+//    }
 
 
 }

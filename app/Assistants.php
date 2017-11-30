@@ -11,7 +11,7 @@ class Assistants extends Model
 
 
     protected $fillable = [
-        'userId','address', 'doctorId' , 'education', 'isActive'
+        'user_id','address', 'doctor_id' , 'education', 'isActive'
         ,
     ];
 

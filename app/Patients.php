@@ -10,7 +10,7 @@ class Patients extends Model
     protected $table = 'patients';
 
     protected $fillable = [
-        'userId','address', 'totalAppointmentCount', 'noShowUpCount', 'showUpCount'
+        'user_id','address', 'totalAppointmentCount', 'noShowUpCount', 'showUpCount'
         ,
     ];
 

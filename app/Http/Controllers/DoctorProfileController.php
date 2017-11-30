@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Doctors;
+use App\User;
 use Illuminate\Http\Request;
+use PhpParser\Comment\Doc;
+
 
 class DoctorProfileController extends Controller
 {
@@ -15,6 +19,20 @@ class DoctorProfileController extends Controller
     {
         return view('doctor.profile');
     }
+
+    public function list()
+    {
+//        $doctors = User::where('role','Doctor')->get();
+        $doctors = Doctors::all();
+        return view('doctor.list')->with('doctors',$doctors);
+    }
+
+
+//    public function borrowed_list()
+//    {
+//        $result = Issue::where('user_id',Auth::user()->id)->get();
+//        return view('User.borrowed_book_list', compact('result'));
+//    }
 
     /**
      * Show the form for creating a new resource.

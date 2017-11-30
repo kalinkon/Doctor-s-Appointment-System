@@ -95,7 +95,7 @@ class PatientRegisterController extends Controller
 
 
         $patients = Patients::create([
-            'userId'=> $user->id,
+            'user_id'=> $user->id,
             'address' => $data['address'],
             'totalAppointmentCount'=> '0',
             'noShowUpCount'=>'0',

@@ -13,7 +13,7 @@ class CreateSpecializationDepartmentTable extends Migration
      */
     public function up()
     {
-        Schema::create('specializationDepartment', function (Blueprint $table) {
+        Schema::create('specialization_department', function (Blueprint $table) {
             $table->increments('id');
             $table->string('departmentName')->unique();
             $table->timestamps();

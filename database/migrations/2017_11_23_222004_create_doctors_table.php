@@ -29,7 +29,11 @@ class CreateDoctorsTable extends Migration
             •	isActiveForSchedulilng
             •	isChamberCurrentlyOpen
              */
-            $table->integer('userId');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->ondelete('cascade');
+            $table->string('doctorName');
             $table->integer('registrationNo');
             $table->string('educationalDegrees');
             $table->string('specializationDepartment');
