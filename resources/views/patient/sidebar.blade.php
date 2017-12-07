@@ -10,12 +10,12 @@
 	    </div>
 	    <div class="panel-body">
             <ul class="tablist">
-                <li><a href="{{ URL::route('patient.profile') }}">Take an Appointment</a></li>
+                <li><a href="{{ URL::route('patient.takeAppointment') }}">Take an Appointment</a></li>
             </ul>
 	    </div>
 	    <div class="panel-body">
             <ul class="tablist">
-                <li><a href="{{ URL::route('patient.profile') }}">Upcomig Appointments</a></li>
+                <li><a href="{{ URL::route('patient.upcomingAppointments') }}">Upcomig Appointments</a></li>
             </ul>
 	    </div>
 	    <div class="panel-body">
@@ -25,7 +25,7 @@
 	    </div>
 	    <div class="panel-body">
             <ul class="tablist">
-                <li><a href="{{ URL::route('patient.profile') }}">Live Chambers</a></li>
+                <li><a href="{{ URL::route('patient.liveChamber') }}">Live Chambers</a></li>
             </ul>
 	    </div>
 	</div>

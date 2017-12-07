@@ -27,9 +27,32 @@ class DoctorProfileController extends Controller
         return view('doctor.list')->with('doctors',$doctors);
     }
 
+
+
     public function dash()
     {
         return view('doctor.dashboard');
+    }
+
+    public function setSchedule()
+    {
+        return view('doctor.setSchedule');
+    }
+    public function upcomingAppointments()
+    {
+        return view('doctor.upcomingAppointments');
+    }
+    public function appointmentHistory()
+    {
+        return view('doctor.appointmentHistory');
+    }
+    public function assistantsList()
+    {
+        return view('doctor.assistantsList');
+    }
+    public function chamber()
+    {
+        return view('doctor.chamber');
     }
 
 

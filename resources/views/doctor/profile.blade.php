@@ -1,75 +1,78 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Doctor's Profile</h3>
-          </div>
-          <div class="panel-body">
-            <form class="form-horizontal">
-              <div class="form-group">
-                <label class="col-sm-2">Name:</label>
-                <div class="col-sm-10">
-                  <p class="form-control-static">Dr. Rashid</p>
+  <div class="container">
+    @include('doctor.sidebar')
+
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2>Profile</h2>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-8 col-sm-12">
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-4">Name:</label>
+                  <div class="col-sm-8">
+                    <p class="form-control-static">Dr. Rashid</p>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2">Gender:</label>
-                <div class="col-sm-10">
-                  <p class="form-control-static">Male</p>
+                <div class="form-group">
+                  <label class="col-sm-4">Gender:</label>
+                  <div class="col-sm-8">
+                    <p class="form-control-static">Male</p>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2">Department</label>
-                <div class="col-sm-10">
-                  <p class="form-control-static">Oncology</p>
+                <div class="form-group">
+                  <label class="col-sm-4">Age:</label>
+                  <div class="col-sm-8">
+                    <p class="form-control-static">28</p>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2">Degree:</label>
-                <div class="col-sm-10">
-                  <p class="form-control-static">MBBS</p>
+                <div class="form-group">
+                  <label class="col-sm-4">Blood group:</label>
+                  <div class="col-sm-8">
+                    <p class="form-control-static">O+</p>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2">Chamber open time:</label>
-                <div class="col-sm-10">
-                  <table class="table table-bordered">
-                    <thead>
-                    	<tr>
-                    		<th>Day</th>
-                    		<th>Time</th>
-                    	</tr>
-                    </thead>
-                    <tbody>
-                    	<tr>
-                    		<td>Sunday</td>
-                    		<td>10am - 11am</td>
-                    	</tr>
-                    </tbody>
-                  </table>
+                <div class="form-group">
+                  <label class="col-sm-4">Address:</label>
+                  <div class="col-sm-8">
+                    <p class="form-control-static">kaliakoir,savar,dhaka</p>
+                  </div>
                 </div>
-              </div>
-               <div class="form-group">
-                <label class="col-sm-2">Doctor's fee:</label>
-                <div class="col-sm-10">
-                  <p class="form-control-static">500 taka only</p>
+                <div class="form-group">
+                  <label class="col-sm-4">Phone number:</label>
+                  <div class="col-sm-8">
+                    <p class="form-control-static">+88017171717171</p>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2">Approximate appointment time</label>
-                <div class="col-sm-10">
-                  <p class="form-control-static">5pm 11-19-2017</p>
+                <div class="form-group">
+                  <label class="col-sm-4">Show up pecentage:</label>
+                  <div class="col-sm-8">8
+                    <p class="form-control-static">78%</p>
+                  </div>
                 </div>
+                <div class="form-group">
+                  <label class="col-sm-4">Total appointment taken:</label>
+                  <div class="col-sm-8">
+                    <p class="form-control-static">50</p>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-3 col-sm-12">
+              <div class="pro-pic">
+                <img src="https://dummyimage.com/200x200/000000/fff.jpg" alt="" class="img-circle img-responsive">
               </div>
-              <div class="form-group">
-              	<div class="col-sm-12" align="center">
-              		<button class="btn btn-primary btn-md text-center">Reserve an appointment</button>
-              	</div>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
+      </div>
     </div>
+  </div>
 @endsection
+
+

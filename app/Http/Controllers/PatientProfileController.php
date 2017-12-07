@@ -20,7 +20,20 @@ class PatientProfileController extends Controller
     {
         return view('patient.dashboard');
     }
+    public function takeAppointment()
+    {
+        return view('patient.takeAppointment');
+    }
 
+    public function upcomingAppointments()
+    {
+        return view('patient.upcomingAppointments');
+    }
+
+    public function liveChamber()
+    {
+        return view('patient.liveChamber');
+    }
     /**
      * Show the form for creating a new resource.
      *
