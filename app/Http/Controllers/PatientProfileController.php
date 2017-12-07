@@ -16,6 +16,11 @@ class PatientProfileController extends Controller
         return view('patient.profile');
     }
 
+    public function dash()
+    {
+        return view('patient.dashboard');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
