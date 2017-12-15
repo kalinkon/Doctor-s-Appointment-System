@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\User_activation;
 use Illuminate\Support\Facades\DB;
 use App\SpecializationDepartment;
 use App\User;
@@ -34,8 +35,8 @@ class DoctorRegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/auth/success';
 
+    protected $redirectTo = '/user/activation';
     /**
      * Create a new controller instance.
      *
@@ -84,8 +85,8 @@ class DoctorRegisterController extends Controller
             'gender'=> $data['gender'],
             'mobileNo' => $data['mobileNo'],
             'password' => bcrypt($data['password']),
-            'isActivated'=> true,
-            'isValid'=> true,
+            'isActivated'=> false,
+            'isValid'=> false,
 
 
         ]);
@@ -119,7 +120,25 @@ class DoctorRegisterController extends Controller
             'isChamberCurrentlyOpen' =>false,
 
         ]);
+        $this->sendActivationCode($user);
         return $user;
+    }
+
+    public function sendActivationCode($user)
+    {
+        $user_activation = ($user->user_activation==null)? new User_activation: $user->user_activation;
+        $activation_code = rand(100000, 999999);
+        $user_activation->user_id = $user->id;
+        $user_activation->token = $activation_code;
+        $user_activation->save();
+
+//        $array=['name' => $user->first_name, 'token' => $activation_code];
+//        Mail::to($user->email)->queue(new EmailVerification($array));
+
+//        $smsBody = 'Welcome, '.$user->first_name.' Your Activation code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
+//        $smsManager = new SMSManager();
+//        //$smsManager->sendSMS($user->mobile_no, $smsBody);
+
     }
 //    public function index()
 //    {

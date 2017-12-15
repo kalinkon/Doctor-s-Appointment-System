@@ -74,6 +74,10 @@ class User extends Authenticatable
     public function patients(){
         return $this->hasOne(Patients::class);
     }
+    public function user_acyivation(){
+        return $this->hasOne(User_activation::class);
+    }
+
 
 //    public function doctors(){
 //        return $this->hasOne(Doctors::class);

@@ -49,7 +49,9 @@ class LoginController extends Controller
     {
         return Auth::attempt(
            // $this->credentials($request) + ["isActivated" => true],["isValid"=>false],
+//            $this->credentials($request) + ["isActivated" => true, "isValid"=> true],
             $this->credentials($request) + ["isActivated" => true],
+
             $request->filled('remember')
         );
     }

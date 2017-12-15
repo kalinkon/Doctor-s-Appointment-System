@@ -15,6 +15,39 @@ Route::get('/', function () {
     return view('commonHome');
 });
 
+Route::prefix('user')-> group(function (){
+
+//    Route::get('create', ['uses' => 'Auth\RegisterController@showRegistrationForm', 'as' => 'user.create']);
+//
+//    Route::post('create', ['uses' => 'Auth\RegisterController@storeUser', 'as' => 'user.store']);
+//
+//    Route::get('view', ['uses' => 'UsersController@showUsers', 'as' => 'user.view']);
+//
+//    Route::get('activation',['uses' => 'Auth\RegisterController@showActivationForm', 'as' => 'user.activation']);
+//    Route::post('activation',['uses' => 'Auth\RegisterController@userActivate', 'as' => 'user.activation']);
+
+
+    Route::get('activation',['uses' => 'Auth\UserActivationController@showActivationForm', 'as' => 'user.activation']);
+    Route::post('activation',['uses' => 'Auth\UserActivationController@userActivate', 'as' => 'user.activation']);
+
+    Route::get('send_activation_code',['uses' => 'Auth\UserActivationController@showResendActivationCodeForm', 'as' => 'user.send_activation_code']);
+    Route::post('send_activation_code',['uses' => 'Auth\UserActivationController@activationCodeSend', 'as' => 'user.send_activation_code']);
+
+    Route::get('send_activation_code_forget_password',['uses' => 'Auth\UserActivationController@showResendActivationCodeForgetPasswordForm',
+        'as' => 'user.send_activation_code_forget_password']);
+    Route::post('send_activation_code_forget_password',['uses' => 'Auth\UserActivationController@forgetPasswordCodeSend',
+        'as' => 'user.send_activation_code_forget_password']);
+
+    Route::get('change_password',
+        ['uses' => 'Auth\UserActivationController@showChangePasswordForm',
+        'as' => 'user.change_password']);
+    Route::post('change_password',
+        ['uses' => 'Auth\UserActivationController@changePassword',
+            'as' => 'user.change_password']);
+
+
+});
+
 Route::get('/doctor', function () {
     return view('doctor.dashboard');
 });
@@ -32,6 +65,8 @@ Route::prefix('doctor')-> group(function (){
     Route::get('list', ['uses' => 'DoctorProfileController@list', 'as' => 'doctor.list']);
 });
 
+
+
 Route::get('/patient', function () {
     return view('patient.dashboard');
 });
@@ -42,6 +77,10 @@ Route::prefix('patient')-> group(function (){
     Route::get('upcomingAppointments', ['uses' => 'PatientProfileController@upcomingAppointments', 'as' => 'patient.upcomingAppointments']);
     Route::get('liveChamber', ['uses' => 'PatientProfileController@liveChamber', 'as' => 'patient.liveChamber']);
 //	Route::get('register', ['uses' => 'PatientRegisterController@index', 'as' => 'patient.register']);
+
+    Route::get('activation',['uses' => 'Auth\PatientRegisterController@showActivationForm', 'as' => 'patient.activation']);
+    Route::post('activation',['uses' => 'Auth\PatientRegisterController@userActivate', 'as' => 'patient.activation']);
+
 });
 
 

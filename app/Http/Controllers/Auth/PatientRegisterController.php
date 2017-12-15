@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\User_activation;
 use App\Patients;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -33,7 +34,7 @@ class PatientRegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/auth/success';
+    protected $redirectTo = '/user/activation';
 
     /**
      * Create a new controller instance.
@@ -80,8 +81,8 @@ class PatientRegisterController extends Controller
             'gender'=> $data['gender'],
             'mobileNo' => $data['mobileNo'],
             'password' => bcrypt($data['password']),
-            'isActivated'=> '1',
-            'isValid'=> '1',
+            'isActivated'=> false,
+            'isValid'=> false,
 
 
         ]);
@@ -101,8 +102,65 @@ class PatientRegisterController extends Controller
             'noShowUpCount'=>'0',
             'showUpCount'=>'0',
         ]);
+        $this->sendActivationCode($user);
         return $user;
     }
+
+    public function sendActivationCode($user)
+    {
+        $user_activation = ($user->user_activation==null)? new User_activation: $user->user_activation;
+        $activation_code = rand(100000, 999999);
+        $user_activation->user_id = $user->id;
+        $user_activation->token = $activation_code;
+        $user_activation->save();
+
+//        $array=['name' => $user->first_name, 'token' => $activation_code];
+//        Mail::to($user->email)->queue(new EmailVerification($array));
+
+//        $smsBody = 'Welcome, '.$user->first_name.' Your Activation code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
+//        $smsManager = new SMSManager();
+//        //$smsManager->sendSMS($user->mobile_no, $smsBody);
+
+    }
+
+//    public function userActivate(Request $request){
+//        $this->validate($request, [
+//            'mobileNo' => 'required|regex:/(01)[0-9]{9}/',
+//            'activation_code' => 'required|integer',
+//        ]);
+//
+//        $user = User::where('mobileNo', $request->mobileNo)->first();
+//        if($user == null){
+////            flash('There is no user with this number!')->error();
+////            return redirect()->route('user.activation');
+//            return "There is no user with this number!";
+//        }
+//        if($user->isActivated){
+////            flash('Your account is already activated!')->warning();
+////            return redirect()->route('user.activation');
+//            return "Your account is already activated!";
+//        }
+//
+//        $user_activation = $user->user_activation;
+//        if($user_activation==null || $user_activation->token!=$request->activation_code || strtotime($user_activation->created_at) + 60*60*24 < time()){
+////            flash('Invalid activation code.Check your email and mobile phone for activation code. Or resend activation code')->error();
+////            return redirect()->route('user.activation');
+//            return "Invalid activation code.Check your email and mobile phone for activation code. Or resend activation code";
+//
+//        }
+//
+//        $user->isActivated=true;
+//        $user->save();
+//        return redirect()-> route('success');
+//
+////        return redirect()->route('user.reset_password',[ $user->email, $user_activation->token]);
+//
+//    }
+
+    public function showActivationForm(){
+        return view('auth.user_activation');
+    }
+
 //    public function index()
 //    {
 //        return view('patient.register');
@@ -126,4 +184,5 @@ class PatientRegisterController extends Controller
     {
         return view('patient.register');
     }
+
 }

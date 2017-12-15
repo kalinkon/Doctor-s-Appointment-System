@@ -27,6 +27,6 @@ class CreateSpecializationDepartmentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('specializationDepartment');
+        Schema::dropIfExists('specialization_department');
     }
 }
