@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <label for="mobile" class="col-sm-3 control-label">Activation Code</label>
                             <div class="col-sm-9">
-                                <input type="number" class="form-control" name="activation_code" id="token" pplaceholder="Type your verification code here" value="{{ csrf_token() }}" required autofocus>
+                                <input type="number" class="form-control" name="activation_code" id="token" placeholder="Type your verification code here" value="{{ csrf_token() }}" required autofocus>
                             </div>
                         </div>
 

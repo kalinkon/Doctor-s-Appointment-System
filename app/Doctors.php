@@ -31,5 +31,11 @@ class Doctors extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function scheduling_setting()
+    {
+        return $this->hasOne(SchedulingSetting::class);
+    }
+
+
 
 }

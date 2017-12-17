@@ -54,7 +54,10 @@ Route::get('/doctor', function () {
 Route::prefix('doctor')-> group(function (){
 	Route::get('profile', ['uses' => 'DoctorProfileController@index', 'as' => 'doctor.profile']);
     Route::get('dashboard', ['uses' => 'DoctorProfileController@dash', 'as' => 'doctor.dashboard']);
-    Route::get('setSchedule', ['uses' => 'DoctorProfileController@setSchedule', 'as' => 'doctor.setSchedule']);
+
+    Route::get('setSchedule', ['uses' => 'DoctorController@setScheduleParamForm', 'as' => 'doctor.setSchedule']);
+    Route::post('setSchedule', ['uses' => 'DoctorController@setScheduleParam', 'as' => 'doctor.setSchedule']);
+
     Route::get('upcomingAppointments', ['uses' => 'DoctorProfileController@upcomingAppointments', 'as' => 'doctor.upcomingAppointments']);
     Route::get('appointmentHistory', ['uses' => 'DoctorProfileController@appointmentHistory', 'as' => 'doctor.appointmentHistory']);
     Route::get('assistantsList', ['uses' => 'DoctorProfileController@assistantsList', 'as' => 'doctor.assistantsList']);
