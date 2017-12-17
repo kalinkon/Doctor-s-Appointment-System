@@ -63,6 +63,11 @@ Route::prefix('doctor')-> group(function (){
     Route::get('assistantsList', ['uses' => 'DoctorProfileController@assistantsList', 'as' => 'doctor.assistantsList']);
     Route::get('chamber', ['uses' => 'DoctorProfileController@chamber', 'as' => 'doctor.chamber']);
 
+    Route::get('dayOff', ['uses' => 'DoctorController@showDayOffForm', 'as' => 'doctor.dayOff']);
+    Route::post('dayOff', ['uses' => 'DoctorController@dayOffFunction', 'as' => 'doctor.dayOff']);
+
+
+
 
 //	Route::get('register', ['uses' => 'DoctorRegisterController@index', 'as' => 'doctor.register']);
     Route::get('list', ['uses' => 'DoctorProfileController@list', 'as' => 'doctor.list']);

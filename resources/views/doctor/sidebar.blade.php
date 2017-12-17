@@ -13,6 +13,11 @@
                 <li><a href="{{ URL::route('doctor.setSchedule') }}">Set/Edit Appointment Scheduling System</a></li>
             </ul>
 	    </div>
+        <div class="panel-body">
+            <ul class="tablist">
+                <li><a href="{{ URL::route('doctor.dayOff') }}">take a day off</a></li>
+            </ul>
+        </div>
 	    <div class="panel-body">
             <ul class="tablist">
                 <li><a href="{{ URL::route('doctor.upcomingAppointments') }}"> Upcoming Appointments</a></li>

@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
+
 
 class Doctors extends Model
 {
@@ -34,6 +34,9 @@ class Doctors extends Model
     public function scheduling_setting()
     {
         return $this->hasOne(SchedulingSetting::class);
+    }
+    public function dayOff(){
+        return $this->hasOne(DayOff::class);
     }
 
 

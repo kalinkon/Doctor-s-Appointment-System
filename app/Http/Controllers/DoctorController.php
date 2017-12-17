@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DayOff;
 use Illuminate\Http\Request;
 use App\User;
 use App\Doctors;
@@ -22,6 +23,24 @@ class DoctorController extends Controller
     {
         return view('doctor.setSchedule');
     }
+    public function showDayOffForm()
+    {
+        return view('doctor.take_day_off');
+    }
+
+    public function dayOffFunction(Request $request){
+        $user = User::where('id', Auth::user()->id)->first();
+        $day_offs = ($user->doctors->day_offs==null)? new DayOff: $user->doctors->day_offs;
+        $day_offs->doctor_id = $user->doctors->id;
+        $day_offs->day_off_date = $request->day_off_date;
+        $day_offs->save();
+        $user ->save();
+        return redirect()->route('doctor.dashboard');
+
+
+    }
+
+
     public function setScheduleParam(Request $request){
 
 
