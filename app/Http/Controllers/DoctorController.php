@@ -27,6 +27,13 @@ class DoctorController extends Controller
     {
         return view('doctor.take_day_off');
     }
+    public function showDoctorProfileEdit()
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+        $doctor = $user->doctors;
+        return view('doctor.doctor_profile_edit', ['user' => $user,'doctor' => $doctor]);
+    }
+
 
     public function dayOffFunction(Request $request){
         $user = User::where('id', Auth::user()->id)->first();
@@ -36,9 +43,18 @@ class DoctorController extends Controller
         $day_offs->save();
         $user ->save();
         return redirect()->route('doctor.dashboard');
-
-
     }
+
+    public function stopTakingAppointment(Request $request){
+        $user = User::where('id', Auth::user()->id)->first();
+        $doctor = $user->doctors;
+        $doctor->isActiveForScheduling =false;
+        $doctor-> save();
+        $user->save();
+        return redirect()->route('doctor.dashboard');
+    }
+
+
 
 
     public function setScheduleParam(Request $request){

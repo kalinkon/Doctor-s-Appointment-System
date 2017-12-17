@@ -15,6 +15,13 @@ class DoctorProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+//    public function __construct()
+//    {
+//
+//        $this->middleware('Auth');
+//    }
     public function index()
     {
         return view('doctor.profile');

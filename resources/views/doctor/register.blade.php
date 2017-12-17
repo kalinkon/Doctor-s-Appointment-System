@@ -97,6 +97,7 @@
 			    <label for="department" class="col-sm-2 control-label">Select Department</label>
 			    <div class="col-sm-3">
 			      <select class="form-control" name="specializationDepartment">
+					  <option value="" disabled="disabled">Choose Department</option>
 					  @foreach($departmentArray as $data)
 						  <option value="{{$data->id}}">{{$data->departmentName}}</option>
 					  @endforeach
@@ -119,6 +120,7 @@
 				<div class="form-group">
 			    <label for="gender" class="col-sm-2 control-label">Choose Gender</label>
 			    <div class="col-sm-3">
+
 			      <select class="form-control" name="gender" required>
 			        <option>Male</option>
 			        <option>Female</option>
