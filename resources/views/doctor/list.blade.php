@@ -11,6 +11,7 @@
             <main class="col-sm-12" role="main">
                 <h2 style="margin-bottom: 20px" class="d-none d-sm-block text-center">Doctor's List</h2>
                 <hr>
+                @include('flash::message')
                 <div>
                     <div>
                         <table class="table table-bordered table-responsive">

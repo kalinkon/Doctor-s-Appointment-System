@@ -44,5 +44,5 @@ appointment with th doctor -
                         17. if not avilable-
                                 18. if false-check if last upcooming and booked persons appoinment ending time + 1 day is available
                                 day and not a off day
-                                19. if true-setSchedule-starting time of that day(set)
+                                19. if true-setSchedule-starting time of that day(set)-serial-1
                                 20. if false-keep repeating 8(set)

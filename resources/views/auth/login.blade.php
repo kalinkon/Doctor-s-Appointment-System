@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading" align="center"><STRONG><h3>Login</h3></STRONG></div>
-
+                @include('flash::message')
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}

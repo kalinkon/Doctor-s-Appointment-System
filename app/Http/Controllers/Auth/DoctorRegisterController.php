@@ -58,7 +58,7 @@ class DoctorRegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+//            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'mobileNo' => 'required|regex:/(01)[0-9]{9}/|unique:users',
 //            'gender' => 'required',
@@ -136,9 +136,9 @@ class DoctorRegisterController extends Controller
 //        $array=['name' => $user->first_name, 'token' => $activation_code];
 //        Mail::to($user->email)->queue(new EmailVerification($array));
 
-        $smsBody = 'Welcome, '.$user->name.' Your Activation code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
-        $smsManager = new SMSManager();
-        $smsManager->sendSMS($user->mobileNo, $smsBody);
+//        $smsBody = 'Welcome, '.$user->name.' Your Activation code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
+//        $smsManager = new SMSManager();
+//        $smsManager->sendSMS($user->mobileNo, $smsBody);
 
     }
 //    public function index()
@@ -151,6 +151,8 @@ class DoctorRegisterController extends Controller
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
 //        $this->guard()->login($user);
+        flash('Successfully enrolled to the system, now please check your mobile for the activation code ');
+
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }

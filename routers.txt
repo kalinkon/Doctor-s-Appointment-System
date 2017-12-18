@@ -9,3 +9,7 @@
         //Assistant Registration Routes
         $this->get('registerA', 'Auth\AssistantRegisterController@showRegistrationForm')->name('registerAssistant');
         $this->post('registerA', 'Auth\AssistantRegisterController@register');
+
+	 //Admin Registration Routes
+        $this->get('registerA', 'Auth\AdminRegisterController@showRegistrationForm')->name('registerAdmin');
+        $this->post('registerA', 'Auth\AdminRegisterController@register');

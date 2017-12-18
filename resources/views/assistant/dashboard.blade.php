@@ -10,6 +10,7 @@
                     <div class="panel-body">
                         <h1>Welcome Assistant</h1>
                         <p class="text-muted">Manage all the things</p>
+                        @include('flash::message')
                     </div>
                 </div>
             </div>

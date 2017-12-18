@@ -8,8 +8,10 @@
                 <div class="panel-heading">Register</div>
 
                 <div class="panel-body">
+                    @include('flash::message')
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
+
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>

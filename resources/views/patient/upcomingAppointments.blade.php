@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row">
             @include('patient.sidebar')
+            @include('flash::message')
 
             <div class="col-md-9">
                 <div class="panel panel-default">

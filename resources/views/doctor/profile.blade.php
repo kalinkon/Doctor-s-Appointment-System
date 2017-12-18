@@ -8,6 +8,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h2>Profile</h2>
+          @include('flash::message')
         </div>
         <div class="panel-body">
           <div class="row">

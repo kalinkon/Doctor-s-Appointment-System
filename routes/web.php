@@ -17,15 +17,6 @@ Route::get('/', function () {
 
 Route::prefix('user')-> group(function (){
 
-//    Route::get('create', ['uses' => 'Auth\RegisterController@showRegistrationForm', 'as' => 'user.create']);
-//
-//    Route::post('create', ['uses' => 'Auth\RegisterController@storeUser', 'as' => 'user.store']);
-//
-//    Route::get('view', ['uses' => 'UsersController@showUsers', 'as' => 'user.view']);
-//
-//    Route::get('activation',['uses' => 'Auth\RegisterController@showActivationForm', 'as' => 'user.activation']);
-//    Route::post('activation',['uses' => 'Auth\RegisterController@userActivate', 'as' => 'user.activation']);
-
 
     Route::get('activation',['uses' => 'Auth\UserActivationController@showActivationForm', 'as' => 'user.activation']);
     Route::post('activation',['uses' => 'Auth\UserActivationController@userActivate', 'as' => 'user.activation']);
@@ -51,6 +42,17 @@ Route::prefix('user')-> group(function (){
 Route::get('/doctor', function () {
     return view('doctor.dashboard');
 });
+Route::prefix('admin')-> group(function (){
+    Route::get('verifyDoctor', ['uses' => 'AdminController@showDoctorVerifyList', 'as' => 'admin.verifyDoctors']);
+    Route::get('/verifyDoctor/{id}','AdminController@verifyDoctor');
+    Route::get('/rejectDoctor/{id}','AdminController@rejectDoctor');
+    Route::get('DoctorList', ['uses' => 'AdminController@showDoctorList', 'as' => 'admin.Doctors']);
+    Route::get('departmentAdd', ['uses' => 'AdminController@addDepartmentForm', 'as' => 'admin.departmentAdd']);
+    Route::post('departmentAdd', ['uses' => 'AdminController@addDepartment', 'as' => 'admin.departmentAdd']);
+
+
+
+});
 Route::prefix('doctor')-> group(function (){
 	Route::get('profile', ['uses' => 'DoctorProfileController@index', 'as' => 'doctor.profile']);
     Route::get('dashboard', ['uses' => 'DoctorProfileController@dash', 'as' => 'doctor.dashboard']);
@@ -72,6 +74,7 @@ Route::prefix('doctor')-> group(function (){
 
 //	Route::get('register', ['uses' => 'DoctorRegisterController@index', 'as' => 'doctor.register']);
     Route::get('list', ['uses' => 'DoctorProfileController@list', 'as' => 'doctor.list']);
+
 });
 
 

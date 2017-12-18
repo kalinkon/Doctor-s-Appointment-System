@@ -9,6 +9,7 @@
                 <div class="panel panel-default">
                     @include('flash::message')
                     <div class="panel-body">
+                        @include('flash::message')
                         <h1>Welcome patient</h1>
                         <p class="text-muted">Manage all the things</p>
                     </div>

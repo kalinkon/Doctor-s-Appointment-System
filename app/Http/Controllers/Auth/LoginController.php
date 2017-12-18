@@ -81,5 +81,11 @@ class LoginController extends Controller
             return Redirect()->route('assistant.dashboard');
         }
 
+        if( Auth::user()->role == 'Admin' ){
+            flash('Successfully logged in')->success();
+            return Redirect()->route('admin.verifyDoctors');
+        }
+
+
         }
 }

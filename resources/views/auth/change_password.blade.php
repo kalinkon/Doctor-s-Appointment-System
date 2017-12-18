@@ -11,6 +11,7 @@
                     {{--<div id="alert" class="text-center">--}}
                     {{--@include('flash::message')--}}
                     {{--</div>--}}
+                    @include('flash::message')
                     <form class="form-horizontal" method= "POST" action="{{route('user.change_password')}}">
                         {{ csrf_field() }}
 

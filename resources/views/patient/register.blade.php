@@ -6,6 +6,7 @@
 
 			<div class="well">
 				<div class="panel-heading" align="center" ><strong>Patient's Registration</strong></div>
+				@include('flash::message')
 				<form class="form-horizontal" method= "POST" action="{{ route('registerPatient') }}">
 					{{ csrf_field() }}
 

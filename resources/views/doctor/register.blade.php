@@ -1,35 +1,4 @@
 @extends('layouts.app')
-{{--@section('script')--}}
-
-	{{--<script type="text/javascript">--}}
-        {{--$(document).ready(function(){--}}
-            {{--$.ajaxSetup({--}}
-                {{--headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')}--}}
-            {{--});--}}
-
-{{--//            $(function () {--}}
-{{--//                $('#date_of_birth').datepicker({ changeYear: true, changeMonth:true, yearRange: "1980:"+new Date().getFullYear() });--}}
-{{--//            });--}}
-
-
-            {{--$.post("{{ URL::route('department.list') }}",{},function(data){--}}
-                {{--$('#department').html(data);--}}
-{{--//                departmentList();--}}
-            {{--});--}}
-
-			{{--function departmentList(){--}}
-			{{--$('#university_id').on('change', function(){--}}
-			{{--var university_id = $('#university_id option:selected').val();--}}
-			{{--$.post("{{ URL::route('department.list') }}",{university_id:university_id},function(data){--}}
-			{{--$('#department_list').html(data);--}}
-			{{--});--}}
-			{{--});--}}
-			{{--}--}}
-
-        {{--});--}}
-	{{--</script>--}}
-
-{{--@endsection--}}
 
 @section('content')
 <div class="container">
@@ -38,6 +7,7 @@
 			<div class="panel-heading" align="center" ><strong>Doctor's Registration</strong></div>
 			<form class="form-horizontal"method= "POST" action="{{ route('registerDoctor') }}">
 				{{ csrf_field() }}
+				@include('flash::message')
 			  <div class="form-group">
 			    <label for="name" class="col-sm-2 control-label">Name</label>
 			    <div class="col-sm-10">
@@ -46,20 +16,20 @@
 			  </div>
 
 
-			  <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+			  <div class="form-group">
 			    <label for="email" class="col-sm-2 control-label">Email</label>
 			    <div class="col-sm-10">
-			      <input type="email" name="email" class="form-control" id="email" placeholder="Email" autofocus required>
-					@if ($errors->has('email'))
-						<span class="help-block">
-									<strong>{{ $errors->first('email') }}</strong>
-								</span>
-					@endif
+			      <input type="email" name="email" class="form-control" id="email" placeholder="Email" autofocus >
+					{{--@if ($errors->has('email'))--}}
+						{{--<span class="help-block">--}}
+									{{--<strong>{{ $errors->first('email') }}</strong>--}}
+								{{--</span>--}}
+					{{--@endif--}}
 			    </div>
 			  </div>
 
 
-			  <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+			  <div class="form-group{{ $errors->has('mobileNo') ? ' has-error' : '' }}">
 			    <label for="mobile" class="col-sm-2 control-label">Mobile number</label>
 			    <div class="col-sm-10">
 			      <input type="number" class="form-control" id="mobile" placeholder="Mobile" name="mobileNo" required autofocus>

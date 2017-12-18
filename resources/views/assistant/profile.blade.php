@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+      @include('flash::message')
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">Your Profile</h3>

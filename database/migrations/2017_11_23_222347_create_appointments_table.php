@@ -24,9 +24,6 @@ class CreateAppointmentsTable extends Migration
                 ->references('id')->on('patients')
                 ->ondelete('cascade');
             $table->integer('assistant_id')->unsigned();
-            $table->foreign('assistant_id')
-                ->references('id')->on('assistants')
-                ->ondelete('cascade');
             $table->timestamp('scheduledTime');
             $table->timestamp('endTime');
             $table->string('appointmentDuration');
@@ -35,7 +32,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('medication');
             $table->string('tips');
             $table -> string('isbooked');
-
+            $table->boolean('isCancelled');
             $table->timestamps();
         });
     }

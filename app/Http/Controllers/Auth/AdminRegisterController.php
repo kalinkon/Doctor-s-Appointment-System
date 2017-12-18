@@ -1,17 +1,20 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-use App\User_activation;
+
+use App\Admins;
 use App\User;
-use App\Assistants;
+use App\User_activation;
+use App\Patients;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use App\SMS\SMSManager;
-class AssistantRegisterController extends Controller
+class AdminRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -27,14 +30,12 @@ class AssistantRegisterController extends Controller
 
     use RegistersUsers;
 
-
-
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/user/activation';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -56,9 +57,11 @@ class AssistantRegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+//            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'mobileNo' => 'required|regex:/(01)[0-9]{9}/|unique:users',
+            'gender' => 'required',
+            'address'=> 'required',
 
         ]);
     }
@@ -75,68 +78,42 @@ class AssistantRegisterController extends Controller
             'name' => $data['name'],
             'date_of_birth'=>$data['date_of_birth'],
             'email' => $data['email'],
-            'role' => 'Assistant',
+            'role' => 'Admin',
             'gender'=> $data['gender'],
             'mobileNo' => $data['mobileNo'],
             'password' => bcrypt($data['password']),
             'isActivated'=> false,
-            'isValid'=> false,
+            'isValid'=> true,
 
 
         ]);
 
-//        $user = User::create([
-//            'user_name' => $data['user_name'],
-//            'email' => $data['email'],
-//            'password' => bcrypt($data['password']),
-//        ]);
 
-
-        $assistants = Assistants::create([
+        $admins = Admins::create([
             'user_id'=> $user->id,
-            'doctor_id'=>$data['doctorId'],
             'address' => $data['address'],
-            'education'=> $data['education'],
-            'isActive'=>true,
 
         ]);
-        $this->sendActivationCode($user);
         return $user;
     }
 
-    public function sendActivationCode($user)
-    {
-        $user_activation = ($user->user_activation==null)? new User_activation: $user->user_activation;
-        $activation_code = rand(100000, 999999);
-        $user_activation->user_id = $user->id;
-        $user_activation->token = $activation_code;
-        $user_activation->save();
-
-//        $array=['name' => $user->first_name, 'token' => $activation_code];
-//        Mail::to($user->email)->queue(new EmailVerification($array));
-
-//        $smsBody = 'Welcome, '.$user->name.' Your Activation code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
-//        $smsManager = new SMSManager();
-//        $smsManager->sendSMS($user->mobileNo, $smsBody);
 
 
-    }
-//    public function index()
-//    {
-//        return view('patient.register');
-//    }
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
 //        $this->guard()->login($user);
-        flash('Successfully enrolled to the system, now please check your mobile for the activation code ')->success();
+        flash('Successfully enrolled to the system ')->success();
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
+
     }
+
 
     public function showRegistrationForm()
     {
-        return view('assistant.register');
+        return view('admin.register');
     }
+
 }

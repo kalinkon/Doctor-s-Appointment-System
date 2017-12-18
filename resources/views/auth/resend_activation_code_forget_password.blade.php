@@ -7,7 +7,7 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="well">
                 <div class="panel-heading" align="center" ><strong>Send Verification Code</strong></div>
-
+                @include('flash::message')
                 {{--<div id="alert" class="text-center">--}}
                     {{--@include('flash::message')--}}
                     {{--</div>--}}

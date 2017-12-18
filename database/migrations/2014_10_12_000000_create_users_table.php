@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('gender');
             $table->string('date_of_birth');
             $table->string('mobileNo')->unique();
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
             $table->boolean('isActivated');
-            $table->boolean('isValid');
+            $table->boolean('isValid')->nullable();
             $table->string('pictureLink');
             $table->string('password');
             $table->rememberToken();

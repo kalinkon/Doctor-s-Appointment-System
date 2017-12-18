@@ -30,10 +30,11 @@
       crossorigin="anonymous"></script>
     <script type="text/javascript" src= {{ asset('js/bootstrap-timepicker.js') }}></script>
     <script>
-        $('div.alert').not('.alert-important').delay(1000).fadeOut(350);
+        $('div.alert').not('.alert-important').delay(4000).fadeOut(350);
     </script>
 
     @yield('script')
+    {{--@yield('css')--}}
 
 </body>
 </html>

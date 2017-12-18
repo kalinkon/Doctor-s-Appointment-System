@@ -18,7 +18,7 @@ use Illuminate\Auth\Events\Registered;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Validation\ValidationException;
-
+use App\SMS\SMSManager;
 
 
 class UserActivationController extends Controller
@@ -45,14 +45,15 @@ class UserActivationController extends Controller
         $activation_code = rand(100000, 999999);
         $user_activation->user_id = $user->id;
         $user_activation->token = $activation_code;
+
+//        $smsBody = 'Welcome, '.$user->name.' Your password changing code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
+//        $smsManager = new SMSManager();
+//        $smsManager->sendSMS($user->mobileNo, $smsBody);
+        flash('Successfully, now please check your mobile for the activation code ')->success();
+
         $user_activation->save();
 
-//        $array=['name' => $user->first_name, 'token' => $activation_code];
-//        Mail::to($user->email)->queue(new EmailVerification($array));
 
-//        $smsBody = 'Welcome, '.$user->first_name.' Your Activation code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
-//        $smsManager = new SMSManager();
-//        //$smsManager->sendSMS($user->mobile_no, $smsBody);
 
     }
 
@@ -64,21 +65,21 @@ class UserActivationController extends Controller
 
         $user = User::where('mobileNo', $request->mobileNo)->first();
         if($user == null){
-//            flash('There is no user with this number!')->error();
-//            return redirect()->route('user.activation');
-            return "There is no user with this number!";
+            flash('There is no user with this number!')->error();
+            return redirect()->route('user.activation');
+//            return "There is no user with this number!";
         }
         if($user->isActivated){
-//            flash('Your account is already activated!')->warning();
-//            return redirect()->route('user.activation');
-            return "Your account is already activated!";
+            flash('Your account is already activated!')->warning();
+            return redirect()->route('user.activation');
+//            return "Your account is already activated!";
         }
 
         $user_activation = $user->user_activation;
         if($user_activation==null || $user_activation->token!=$request->activation_code || strtotime($user_activation->created_at) + 60*60*24 < time()){
-//            flash('Invalid activation code.Check your email and mobile phone for activation code. Or resend activation code')->error();
-//            return redirect()->route('user.activation');
-            return "Invalid activation code.Check your email and mobile phone for activation code. Or resend activation code";
+            flash('Invalid activation code.Check mobile phone for activation code. Or resend activation code')->error();
+            return redirect()->route('user.activation');
+//            return "Invalid activation code.Check your email and mobile phone for activation code. Or resend activation code";
 
         }
 
@@ -103,7 +104,7 @@ class UserActivationController extends Controller
 
         $user = User::where('mobileNo', $request->mobileNo)->first();
         if($user == null){
-//            flash('There is no user with this number!')->error();
+            flash('There is no user with this number!')->error();
 //            return redirect()->route('user.activation');
             return "There is no user with this number!";
         }
@@ -112,7 +113,7 @@ class UserActivationController extends Controller
         if($user_activation==null ||
             $user_activation->token!=$request->activation_code ||
             strtotime($user_activation->created_at) + 60*60*24 < time()){
-//            flash('Invalid activation code.Check your email and mobile phone for activation code. Or resend activation code')->error();
+            flash('Invalid activation code.Check your email and mobile phone for activation code. Or resend activation code')->error();
 //            return redirect()->route('user.activation');
             return "Invalid activation code.Check your email and mobile phone for activation code. Or resend activation code";
 
@@ -157,14 +158,14 @@ class UserActivationController extends Controller
 
         $user = User::where('mobileNo', $request->mobileNo)->first();
         if($user == null){
-//            flash('There is no user with your email!')->error();
+            flash('There is no user with your email!')->error();
             return redirect()->route('user.send_activation_code');
         }
 //        $user->is_activated = false;
 //        $user->save();
 
         $this->sendActivationCode($user);
-//        flash('Activation code has been successfully sent to your mail and mobile!');
+        flash('Activation code has been successfully sent to your mail and mobile!');
         return redirect()->route('user.activation');
 
     }
@@ -176,14 +177,14 @@ class UserActivationController extends Controller
 
         $user = User::where('mobileNo', $request->mobileNo)->first();
         if($user == null){
-//            flash('There is no user with your email!')->error();
+            flash('There is no user with your email!')->error();
             return redirect()->route('user.forget_password_code');
         }
 //        $user->is_activated = false;
 //        $user->save();
 
         $this->sendActivationCode($user);
-//        flash('Activation code has been successfully sent to your mail and mobile!');
+        flash('Activation code has been successfully sent to your mail and mobile!');
         return redirect()->route('user.change_password');
 
     }
