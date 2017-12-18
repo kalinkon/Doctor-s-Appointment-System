@@ -11,7 +11,7 @@ class Assistants extends Model
 
 
     protected $fillable = [
-        'user_id','address', 'doctor_id' , 'education', 'isActive'
+        'user_id', 'address', 'doctor_id', 'education', 'isActive'
         ,
     ];
 
@@ -19,6 +19,12 @@ class Assistants extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function appointment()
+    {
+        return $this->hasMany(Appointments::class);
+    }
+
 
 
 }

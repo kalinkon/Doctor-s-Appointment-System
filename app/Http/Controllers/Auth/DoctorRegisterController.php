@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\SMS\SMSManager;
 use App\User_activation;
 use Illuminate\Support\Facades\DB;
 use App\SpecializationDepartment;
@@ -111,7 +112,7 @@ class DoctorRegisterController extends Controller
             'doctorName'=> $user->name,
             'registrationNo'=>$data['registrationNo'],
             'educationalDegrees' => $data['educationalDegrees'],
-            'specializationDepartment_id' => $data['specializationDepartment'],
+            'specializationDepartmentId' => $data['specializationDepartment'],
             'specializationDepartment'=>DB::table('specialization_department')->where('id', $data['specializationDepartment'])->value('departmentName'),
             'chamberAddress' => $data['chamberAddress'],
             'chamberAddressGeoLocation' => '.999,.9999',
@@ -135,9 +136,9 @@ class DoctorRegisterController extends Controller
 //        $array=['name' => $user->first_name, 'token' => $activation_code];
 //        Mail::to($user->email)->queue(new EmailVerification($array));
 
-//        $smsBody = 'Welcome, '.$user->first_name.' Your Activation code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
-//        $smsManager = new SMSManager();
-//        //$smsManager->sendSMS($user->mobile_no, $smsBody);
+        $smsBody = 'Welcome, '.$user->name.' Your Activation code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
+        $smsManager = new SMSManager();
+        $smsManager->sendSMS($user->mobileNo, $smsBody);
 
     }
 //    public function index()

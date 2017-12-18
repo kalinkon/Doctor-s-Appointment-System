@@ -66,11 +66,20 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
 
-        if( Auth::user()->role == 'Doctor') return Redirect()->route('doctor.dashboard');
+        if( Auth::user()->role == 'Doctor'){
+            flash('Successfully logged in')->success();
+            return Redirect()->route('doctor.dashboard');
+        }
 
-        if( Auth::user()->role  == 'Patient' ) return Redirect()->route('patient.dashboard');
+        if( Auth::user()->role  == 'Patient' ){
 
-        if( Auth::user()->role == 'Assistant' ) return Redirect()->route('assistant.dashboard');
+            return Redirect()->route('patient.dashboard');
+        }
 
-    }
+        if( Auth::user()->role == 'Assistant' ){
+            flash('Successfully logged in')->success();
+            return Redirect()->route('assistant.dashboard');
+        }
+
+        }
 }

@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\DepartmentProvider::class,
         App\Providers\DoctorListProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
 
     ],
 

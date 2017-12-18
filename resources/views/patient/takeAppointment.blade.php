@@ -10,30 +10,49 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12" style="padding: 150px 40px;">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Enter disease, specialization department or doctor's name ">
-                                    <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
-                                </div>
+                                <form class="form-horizontal">
+                                    {{ csrf_field() }}
+                                    <div class="input-group">
+                                        <input type="text" name="search" class="form-control" placeholder="Enter disease, specialization department or doctor's name ">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-secondary" type="button">Go!</button>
+                                        </span>
+                                    </div>
+                                </form>
+
                                 <h3 class="text-center">Or</h3>
                                 <div class="row" align="center">
                                     <div class="col-md-4 col-md-offset-2">
-                                        <select class="form-control" name="gender" required>
-                                            <option selected disabled>Choose gender</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            <option>Other</option>
+                                        <select class="form-control" name="department" required>
+                                            <option selected disabled>Choose department</option>
+                                            {{--<option>Male</option>--}}
+                                            {{--<option>Female</option>--}}
+                                            {{--<option>Other</option>--}}
                                         </select>
                                     </div>
-                                    <div class="col-md-4">
-                                        <select class="form-control" name="gender" required>
-                                            <option selected disabled>Choose gender</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            <option>Other</option>
-                                        </select>
-                                    </div>
+
+                                    <form class="form-horizontal" method="POST" action="{{route('patient.doctorProfile')}}">
+                                        {{ csrf_field() }}
+
+                                        <div class="form-group">
+                                            <div class="col-md-4">
+                                                <select class="form-control" name="doctor" required>
+                                                    <option selected disabled>Choose doctor</option>
+                                                    @foreach($doctors as $data)
+                                                        <option value="{{$data->id}}">{{$data->doctorName}}</option>
+                                                    @endforeach
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-success">Submit</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
                                 </div>
                             </div>
                         </div>

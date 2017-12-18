@@ -1,51 +1,57 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Doctors;
+
+use App\DayOff;
 use App\SpecializationDepartment;
 use Illuminate\Http\Request;
+use App\User;
+use App\Patients;
+use App\Doctors;
+use App\SchedulingSetting;
+use Illuminate\Support\Facades\Auth;
+use PhpParser\Comment\Doc;
+use DateTime;
 
-class PatientProfileController extends Controller
+class PatientController extends Controller
 {
+    //
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('patient.profile');
+    public function showDoctorSearchList(){
+        return view('patient.doctorSearchList');
     }
 
-    public function dash()
-    {
-        return view('patient.dashboard');
-    }
-    public function takeAppointment()
-    {
-
-        $doctors = Doctors::where('isActiveForScheduling', true)->get();
-//        dd($doctors);
-        $departments = SpecializationDepartment::all();
-        return view('patient.takeAppointment',['doctors'=>$doctors,'departments'=>$departments]);
+    public function appointmentCalculate($id){
+//          {{ $id->id; }}
+        $doctor = Doctors::find($id);
+        dd($doctor);
+        return redirect()->route('patient.doctorSearchList');
     }
 
-    public function list()
-    {
-//        $doctors = User::where('role','Doctor')->get();
-        $doctors = Doctors::all();
-        return view('doctor.list')->with('doctors',$doctors);
+    public function loadDoctorProfile(Request $request){
+        $doctor = Doctors::where('id', $request->doctor)->first();
+        $user = User::where('id', $doctor->id)->first();
+        $department = SpecializationDepartment::where('id', $doctor->specializationDepartmentId)->first();
+
+        $birthday = new DateTime($user->date_of_birth);
+        $currentDate = new DateTime(date("Y-m-d"));
+        $interval = $birthday->diff($currentDate);
+
+        $age= $interval->format('%Y');
+
+        return view('patient.profile_doctor',['doctor'=>$doctor,'user'=>$user,'department'=>$department,'age'=>$age]);
+//        return $doctor->specializationDepartmentId;
+//        return $department;
     }
 
-    public function upcomingAppointments()
-    {
-        return view('patient.upcomingAppointments');
-    }
 
-    public function liveChamber()
-    {
-        return view('patient.liveChamber');
-    }
+
+
+
     /**
      * Show the form for creating a new resource.
      *

@@ -15,6 +15,27 @@ class CreateAppointmentsTable extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('doctor_id')->unsigned();
+            $table->foreign('doctor_id')
+                ->references('id')->on('doctors')
+                ->ondelete('cascade');
+            $table->integer('patient_id')->unsigned();
+            $table->foreign('patient_id')
+                ->references('id')->on('patients')
+                ->ondelete('cascade');
+            $table->integer('assistant_id')->unsigned();
+            $table->foreign('assistant_id')
+                ->references('id')->on('assistants')
+                ->ondelete('cascade');
+            $table->timestamp('scheduledTime');
+            $table->timestamp('endTime');
+            $table->string('appointmentDuration');
+            $table->boolean('isCurrentlyActive');
+            $table->string('diseaseSymptom');
+            $table->string('medication');
+            $table->string('tips');
+            $table -> string('isbooked');
+
             $table->timestamps();
         });
     }

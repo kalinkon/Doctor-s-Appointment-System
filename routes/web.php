@@ -90,6 +90,13 @@ Route::prefix('patient')-> group(function (){
     Route::get('activation',['uses' => 'Auth\PatientRegisterController@showActivationForm', 'as' => 'patient.activation']);
     Route::post('activation',['uses' => 'Auth\PatientRegisterController@userActivate', 'as' => 'patient.activation']);
 
+    Route::get('doctorSearchList',['uses' => 'PatientController@showDoctorSearchList', 'as' => 'patient.doctorSearchList']);
+
+    Route::post('doctorProfile',['uses' => 'PatientController@loadDoctorProfile', 'as' => 'patient.doctorProfile']);
+//    Route::get('/appointmentCalculate/{id}',['uses' => 'PatientController@appointmentCalculate', 'as' => 'patient.appointmentCalculate']);
+    Route::get('/appointmentCalculate/{id}','PatientController@appointmentCalculate');
+
+
 });
 
 
