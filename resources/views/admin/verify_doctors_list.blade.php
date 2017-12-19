@@ -35,12 +35,12 @@
                                 @foreach($users as $item)
 
                                     <tr>
-                                        <td>{{$item->doctors->doctorName}}</td>
+                                        <td >{{$item->doctors->doctorName}}</td>
                                         <td>{{$item->doctors->specializationDepartment}}</td>
                                         <td>{{$item->doctors->registrationNo}}</td>
                                         <td>{{$item->gender}}</td>
                                         <td> {{$item->doctors->id}}</td>
-                                        <td >{{$item->doctors->chamberAddress}}</td>
+                                        <td>{{$item->doctors->chamberAddress}}</td>
 
                                         <td>
                                             <a href="{{url('/admin/verifyDoctor/'.$item->id)}}" class="btn btn-primary">Accept</a>
@@ -58,4 +58,13 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('css')
+    <style rel="stylesheet">
+        .table > tbody > tr > td {
+            max-width: 100px;
+            overflow-wrap: break-word;
+        }
+    </style>
 @endsection

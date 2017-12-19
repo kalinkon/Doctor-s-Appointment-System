@@ -34,7 +34,7 @@
     </script>
 
     @yield('script')
-    {{--@yield('css')--}}
+    @yield('css')
 
 </body>
 </html>

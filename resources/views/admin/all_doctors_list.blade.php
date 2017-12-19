@@ -68,3 +68,11 @@
         </div>
     </div>
 @endsection
+@section('css')
+    <style rel="stylesheet">
+        .table > tbody > tr > td {
+            max-width: 100px;
+            overflow-wrap: break-word;
+        }
+    </style>
+@endsection
