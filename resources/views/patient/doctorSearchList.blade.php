@@ -10,7 +10,6 @@
                     <div class="panel-body text-center">
                         <h1>Search results</h1>
                         @include('flash::message')
-                        <p class="text-muted">See results below</p>
                     </div>
                 </div>
 
@@ -20,41 +19,29 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Specialize</th>
-                                <th>Degree</th>
+                                <th>Specialization</th>
+                                <th>Degrees</th>
+                                <th>Visit Fee</th>
+                                <th>Address</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Dr. harun</td>
-                                <td>Oncology</td>
-                                <td>MBBS</td>
-                                <td>
-                                    <a href="" class="btn btn-primary">View Profile</a>
-                                    <a href="" class="btn btn-primary">View Chamber</a>
-                                </td>
-                            </tr>
+                            @foreach($users as $item)
 
-                            <tr>
-                                <td>Dr. harun</td>
-                                <td>Oncology</td>
-                                <td>MBBS</td>
-                                <td>
-                                    <a href="" class="btn btn-primary">View Profile</a>
-                                    <a href="" class="btn btn-primary">View Chamber</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td >{{$item->doctors->doctorName}}</td>
+                                    <td>{{$item->doctors->specializationDepartment}}</td>
+                                    <td> {{$item->doctors->educationalDegrees}}</td>
+                                    <td> {{$item->doctors->visitFee}}</td>
+                                    <td>{{$item->doctors->chamberAddress}}</td>
+                                    <td>
+                                        <a href="{{url('/patient/doctorProfile/'.$item->id)}}" class="btn btn-primary">Profile</a>
+                                        {{--<a href="{{url('/admin/rejectDoctor/'.$item->id)}}" class="btn btn-primary">Reject</a>--}}
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td>Dr. harun</td>
-                                <td>Oncology</td>
-                                <td>MBBS</td>
-                                <td>
-                                    <a href="" class="btn btn-primary">View Profile</a>
-                                    <a href="" class="btn btn-primary">View Chamber</a>
-                                </td>
-                            </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -63,4 +50,13 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('css')
+    <style rel="stylesheet">
+        .table > tbody > tr > td {
+            max-width: 100px;
+            overflow-wrap: break-word;
+        }
+    </style>
 @endsection

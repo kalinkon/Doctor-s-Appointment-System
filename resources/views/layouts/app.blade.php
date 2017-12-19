@@ -14,11 +14,15 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/timepicker.css') }}" rel="stylesheet">
+    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css">--}}
 </head>
 <body>
     <div id="app">
-        @include('inc.navbar')
-
+        @guest
+            @include('inc.nav_bar_guest')
+        @else
+                @include('inc.navbar')
+        @endguest
         @yield('content')
     </div>
 
@@ -29,6 +33,7 @@
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
     <script type="text/javascript" src= {{ asset('js/bootstrap-timepicker.js') }}></script>
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/js/mdb.min.js"></script>--}}
     <script>
         $('div.alert').not('.alert-important').delay(4000).fadeOut(350);
     </script>

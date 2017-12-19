@@ -11,9 +11,26 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+                    @if( Auth::user()->role =='Admin')
+                        <a class="navbar-brand" href="{{route('admin.verifyDoctors') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                     @endif
+                    @if( Auth::user()->role =='Doctor')
+                        <a class="navbar-brand" href="{{route('doctor.upcomingAppointments') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                    @endif
+                    @if( Auth::user()->role =='Patient')
+                        <a class="navbar-brand" href="{{route('patient.takeAppointment') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                    @endif
+                    @if( Auth::user()->role =='Assistant')
+                        <a class="navbar-brand" href="{{route('assistant.dashboard') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                    @endif
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

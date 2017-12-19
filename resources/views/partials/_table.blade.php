@@ -29,3 +29,24 @@
   </tbody>
 
 </table>
+
+
+
+
+<td>{{$item->doctors->specializationDepartment}}</td>
+<td>{{$item->doctors->registrationNo}}</td>
+<td></td>
+<td> {{$item->doctors->id}}</td>
+<td>{{$item->doctors->chamberAddress}}</td>
+
+<td>
+    @if($item->doctors->isActiveForSchedluing==true)
+        {{'Active'}}
+    @else
+        {{'Away'}}
+    @endif
+
+</td>
+<td>
+    <a href="" class="btn btn-primary">Profile</a>
+{{--                                        <a href="{{url('/admin/rejectDoctor/'.$item->id)}}" class="btn btn-primary">Reject</a>--}}

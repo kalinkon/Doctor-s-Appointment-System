@@ -12,7 +12,7 @@ class Appointments extends Model
 
     protected $fillable = [
         'doctor_id', 'patient_id' , 'assistant_id', 'scheduledTime' , 'endTime' , 'appointmentDuration',
-        'isCurrentlyActive','diseaseSymptom', 'medication' , 'tips' ,'isbooked','isCancelled'
+        'isCurrentlyActive','diseaseSymptom', 'medication' , 'tips' ,'isbooked','isCancelled','serial'
 
     ];
 

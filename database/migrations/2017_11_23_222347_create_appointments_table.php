@@ -33,6 +33,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('tips')->nullable();
             $table -> string('isbooked');
             $table->boolean('isCancelled');
+            $table->integer('serial');
             $table->timestamps();
         });
     }

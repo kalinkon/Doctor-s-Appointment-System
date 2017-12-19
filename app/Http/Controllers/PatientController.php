@@ -8,10 +8,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Patients;
 use App\Doctors;
-use App\SchedulingSetting;
-use Illuminate\Support\Facades\Auth;
-use PhpParser\Comment\Doc;
 use DateTime;
+use Response;
 
 class PatientController extends Controller
 {
@@ -21,9 +19,40 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showDoctorSearchList(){
-        return view('patient.doctorSearchList');
+    public function showDoctorSearchList(Request $request){
+
+
+//        $doctors = Doctors::where('doctorName','LIKE',"%{$request->name}%")->get();
+        $users = User::where('role','Doctor')->where('name','LIKE',"%{$request->search}%")->get();
+//        $doctors = Doctors::where('doctorName','LIKE',"%{$request->search}%")
+//            ->orWhere('specializationDepartment','LIKE',"%{$request->search}%")->get();
+
+        if(count($users)!=0){
+            return view('patient.doctorSearchList',['users'=>$users]);
+
+        }
+        else flash('Search result is empty');
+//
+        return redirect()->route("patient.takeAppointment");
     }
+///
+    public function getDoctorProfile($id){
+
+        $user = User::where('id', $id)->first();
+        $doctor = Doctors::where('user_id', $user->id)->first();
+        $department = SpecializationDepartment::where('id', $doctor->specializationDepartmentId)->first();
+        $birthday = new DateTime($user->date_of_birth);
+        $currentDate = new DateTime(date("Y-m-d"));
+        $interval = $birthday->diff($currentDate);
+
+        $age= $interval->format('%Y');
+
+        return view('patient.profile_doctor',['doctor'=>$doctor,'user'=>$user,'department'=>$department,'age'=>$age]);
+//        return $doctor->specializationDepartmentId;
+//        return $department;
+    }
+
+
 
     public function appointmentCalculate($id){
 //          {{ $id->id; }}
