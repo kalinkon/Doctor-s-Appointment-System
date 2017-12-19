@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\DayOff;
 use App\SpecializationDepartment;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\User;
 use App\Doctors;
 use App\SchedulingSetting;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Exception;
 use PhpParser\Comment\Doc;
+use Illuminate\Support\Facades\Validator;
 
 
 class AdminController extends Controller
@@ -69,11 +72,24 @@ class AdminController extends Controller
     public function addDepartment(Request $request){
         $department= new SpecializationDepartment();
 //        dd($request->department_name);
-        $department->departmentName=$request->department_name;
-        $department->save();
-        flash('new department '.$request->department_name.' added')->success();
+        try {
+            $this->validator($request->all())->validate();
+            $department->departmentName=$request->department_name;
+            $department->save();
+            flash('new department '.$request->department_name.' added')->success();
+        }
+        catch(QueryException $exception) {
+            flash('Department already exist')->error();
+        }
 //        dd($department);
         return redirect(route('admin.departmentAdd'));
+    }
+
+    protected function validator(array $request)
+    {
+        return Validator::make($request, [
+            'departmentName' => 'unique:specialized_department',
+        ]);
     }
 
     /**

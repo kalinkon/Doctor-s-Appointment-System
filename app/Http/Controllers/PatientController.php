@@ -34,9 +34,8 @@ class PatientController extends Controller
 
     public function loadDoctorProfile(Request $request){
         $doctor = Doctors::where('id', $request->doctor)->first();
-        $user = User::where('id', $doctor->id)->first();
+        $user = User::where('id', $doctor->user_id)->first();
         $department = SpecializationDepartment::where('id', $doctor->specializationDepartmentId)->first();
-
         $birthday = new DateTime($user->date_of_birth);
         $currentDate = new DateTime(date("Y-m-d"));
         $interval = $birthday->diff($currentDate);

@@ -23,14 +23,14 @@ class CreateAppointmentsTable extends Migration
             $table->foreign('patient_id')
                 ->references('id')->on('patients')
                 ->ondelete('cascade');
-            $table->integer('assistant_id')->unsigned();
+//            $table->integer('assistant_id')->unsigned();
             $table->timestamp('scheduledTime');
             $table->timestamp('endTime');
-            $table->string('appointmentDuration');
+            $table->string('appointmentDuration')->nullable();
             $table->boolean('isCurrentlyActive');
-            $table->string('diseaseSymptom');
-            $table->string('medication');
-            $table->string('tips');
+            $table->string('diseaseSymptom')->nullable();
+            $table->string('medication')->nullable();
+            $table->string('tips')->nullable();
             $table -> string('isbooked');
             $table->boolean('isCancelled');
             $table->timestamps();

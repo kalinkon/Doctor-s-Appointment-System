@@ -97,7 +97,7 @@ Route::prefix('patient')-> group(function (){
 
     Route::post('doctorProfile',['uses' => 'PatientController@loadDoctorProfile', 'as' => 'patient.doctorProfile']);
 //    Route::get('/appointmentCalculate/{id}',['uses' => 'PatientController@appointmentCalculate', 'as' => 'patient.appointmentCalculate']);
-    Route::get('/appointmentCalculate/{id}','PatientController@appointmentCalculate');
+    Route::get('/appointmentCalculate/{id}','AppointmentController@appointmentCalculate');
 
 
 });

@@ -28,14 +28,14 @@ Check  –
    10. if doctor exist $ upcoming appointments exist and not booked exist with the same patient category and patient doesn't have any upcoming
         appointment with th doctor then-
 
-            (return a message if patient have a upcoming appointment with the doctor)
+
             11. then-
                 12.find all upcoming appointments which are not booked with same patient category and take the first one(set)
 
 
    13. if doctor exist $ upcoming appointments exist and not booked doesn't exist exist and patient doesn't have any upcoming
 appointment with th doctor -
-                (return a message if patient have a upcoming appointment with the doctor)
+
             14.- then
                 15.take the last booked appointment and upcoming appointment-and check if it's ending time+10min is inside avilable time of that day-
                         16. if avilable- schedule appointment with the ending time+10 as the scheduling time
