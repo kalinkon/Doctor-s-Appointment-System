@@ -23,17 +23,18 @@
                 <li><a href="{{ URL::route('doctor.upcomingAppointments') }}"> Upcoming Appointments</a></li>
             </ul>
 	    </div>
+
 	    <div class="panel-body">
             <ul class="tablist">
                 <li><a href="{{ URL::route('doctor.appointmentHistory') }}">Appointment History</a></li>
             </ul>
 	    </div>
 
-        <div class="panel-body">
-            <ul class="tablist">
-                <li><a href="{{ URL::route('doctor.assistantsList') }}">Assistants list</a></li>
-            </ul>
-        </div>
+        {{--<div class="panel-body">--}}
+            {{--<ul class="tablist">--}}
+                {{--<li><a href="{{ URL::route('doctor.assistantsList') }}">Assistants list</a></li>--}}
+            {{--</ul>--}}
+        {{--</div>--}}
 
         <div class="panel-body">
                 <ul class="tablist">

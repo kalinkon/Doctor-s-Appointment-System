@@ -35,7 +35,7 @@
                                         </td>
                                         <td>
                                             <div class="input-group bootstrap-timepicker timepicker">
-                                                <input id="tpFridayS" type="text" name="friday_opening" class="form-control input-small">
+                                                <input id="tpFridayS" type="text" name="friday_starting" class="form-control input-small">
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                                             </div>
                                         </td>
@@ -57,7 +57,7 @@
                                         </td>
                                         <td>
                                             <div class="input-group bootstrap-timepicker timepicker">
-                                                <input id="tpSaturdayS" name="saturday_opening" type="text" class="form-control input-small">
+                                                <input id="tpSaturdayS" name="saturday_starting" type="text" class="form-control input-small">
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                                             </div>
                                         </td>

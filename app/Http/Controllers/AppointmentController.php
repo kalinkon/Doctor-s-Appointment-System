@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\SMS\SMSManager;
 use App\Appointments;
 use App\DayOff;
 use App\SpecializationDepartment;
@@ -59,7 +59,16 @@ class AppointmentController extends Controller
         $appointment->isbooked = false;
         $appointment->isCancelled = false;
         $appointment->save();
-        return redirect()->route('patient.doctorSearchList');
+
+        $smsBody = 'Congratulations, '.Auth::user()->name.'. Your serial no is '.$appointment->serial.' for '
+                                        .$appointment->doctor->doctorName.' and your scheduled time is '.$appointment->scheduledTime.'. 
+                                         please report 30 mins before scheduled time';
+        $smsManager = new SMSManager();
+        $smsManager->sendSMS($user->mobileNo, $smsBody);
+
+
+        flash('your serial is set check your mobile');
+        return redirect()->route('patient.upcomingAppointments');
     }
 
     public function appointmentCalculate(Request $request, $doctor_id){
@@ -76,7 +85,7 @@ class AppointmentController extends Controller
 
         if($upcoming != null) {
             flash('You already have upcoming appointment for this doctor');
-            return redirect()->route('patient.doctorSearchList');
+            return redirect()->route('patient.takeAppointment');
         }
 
         $day_map = [
@@ -124,6 +133,8 @@ class AppointmentController extends Controller
                                 ->get();
 
             $savedAppointment = null;
+
+            // checking free slot with the same patient category
             foreach ($todaysAppointment as $appointment) {
                 if ($appointment->isCancelled && $patientDuration <= $appointment->appointmentDuration) {
                     return $this->saveAppointment($doctor, Carbon::parse($appointment->scheduledTime),
@@ -136,6 +147,8 @@ class AppointmentController extends Controller
                 ->where('scheduledTime', '>=', $next)
                 ->get();
 
+
+            //addinng new appointment
             if(count($nextAppointment) == 0) {
                 $tryStart = max(clone $startingTime, Carbon::now());
                 $serial = 1;

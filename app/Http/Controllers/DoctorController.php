@@ -141,9 +141,17 @@ class DoctorController extends Controller
 //        }
 
         $user = User::where('id', Auth::user()->id)->first();
-        $scheduling_settings = ($user->doctors->scheduling_settings==null)? new SchedulingSetting: $user->doctors->scheduling_settings;
+        $scheduling_settings = SchedulingSetting::where('doctor_id',$user->doctors->id)->first();
+        $cnt = count($scheduling_settings);
+        if($cnt==0){
+            $scheduling_settings = ($user->doctors->scheduling_settings==null)? new SchedulingSetting: $user->doctors->scheduling_settings;
+            $doctor = $user->doctors;
+            $scheduling_settings-> doctor_id = $user->doctors->id;
+
+        }
         $doctor = $user->doctors;
         $scheduling_settings-> doctor_id = $user->doctors->id;
+
 
         if ($request ->friday==null){
             $scheduling_settings->isAvailableOnFriday = false;
@@ -211,7 +219,7 @@ class DoctorController extends Controller
             $scheduling_settings->wednesdayClosingTime=$request->wednesday_closing;
         }
 
-        if ($request ->Thursday==null){
+        if ($request ->thursday==null){
             $scheduling_settings->isAvailableOnThursday = false;
             $scheduling_settings->thursdayStartingTime=null;
             $scheduling_settings->thursdayClosingTime=null;
@@ -219,7 +227,7 @@ class DoctorController extends Controller
         else{
             $scheduling_settings->isAvailableOnThursday = true;
             $scheduling_settings->thursdayStartingTime=$request->thursday_starting;
-            $scheduling_settings->thhursdayClosingTime=$request->thursday_closing;
+            $scheduling_settings->thursdayClosingTime=$request->thursday_closing;
         }
 
         $scheduling_settings->timeForCategoryA_patients = $request->catA_time;
@@ -231,7 +239,7 @@ class DoctorController extends Controller
         $doctor->save();
         $user->save();
 //        return $scheduling_settings;
-
+        flash("your are all set, thank you");
         return redirect()->route('doctor.dashboard');
 
     }

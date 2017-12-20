@@ -22,22 +22,22 @@
                                 </form>
 
                                 <h3 class="text-center">Or</h3>
-                                <div class="row" align="center">
-                                    <div class="col-md-4 col-md-offset-2">
-                                        <select class="form-control" name="department" required>
-                                            <option selected disabled>Choose department</option>
+                                {{--<div class="row" align="center">--}}
+                                    {{--<div class="col-md-4 col-md-offset-2">--}}
+                                        {{--<select class="form-control" name="department" required>--}}
+                                            {{--<option selected disabled>Choose department</option>--}}
                                             {{--<option>Male</option>--}}
                                             {{--<option>Female</option>--}}
                                             {{--<option>Other</option>--}}
-                                        </select>
-                                    </div>
+                                        {{--</select>--}}
+                                    {{--</div>--}}
 
                                     <form class="form-horizontal" method="POST" action="{{route('patient.doctorProfile')}}">
                                         {{ csrf_field() }}
 
                                         <div class="form-group">
-                                            <div class="col-md-4">
-                                                <select class="form-control" name="doctor" required>
+                                            <div class="col-md-offset-3 col-md-6" align="center">
+                                                <select class="form-control" name="doctor" style="align-items: center;" required>
                                                     <option selected disabled>Choose doctor</option>
                                                     @foreach($doctors as $data)
                                                         <option value="{{$data->id}}">{{$data->doctorName}}</option>
@@ -48,8 +48,8 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" class="btn btn-success">Submit</button>
+                                            <div class="col-sm-offset-5 col-sm-10">
+                                                <button type="submit" class="btn btn-success">Go to Profile</button>
                                             </div>
                                         </div>
 

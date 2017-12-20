@@ -90,6 +90,7 @@
 						<label for="gender" class="col-sm-2 control-label">Choose Gender</label>
 						<div class="col-sm-3">
 							<select class="form-control" name="gender" required>
+								<option selected disabled>Choose gender</option>
 								<option>Male</option>
 								<option>Female</option>
 								<option>Other</option>

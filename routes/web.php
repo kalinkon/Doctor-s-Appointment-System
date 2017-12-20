@@ -92,7 +92,7 @@ Route::prefix('patient')-> group(function (){
 	Route::get('profile', ['uses' => 'PatientProfileController@index', 'as' => 'patient.profile']);
     Route::get('dashboard', ['uses' => 'PatientProfileController@dash', 'as' => 'patient.dashboard']);
     Route::get('takeAppointment', ['uses' => 'PatientProfileController@takeAppointment', 'as' => 'patient.takeAppointment']);
-    Route::get('upcomingAppointments', ['uses' => 'PatientProfileController@upcomingAppointments', 'as' => 'patient.upcomingAppointments']);
+//    Route::get('upcomingAppointments', ['uses' => 'PatientProfileController@upcomingAppointments', 'as' => 'patient.upcomingAppointments']);
     Route::get('liveChamber', ['uses' => 'PatientProfileController@liveChamber', 'as' => 'patient.liveChamber']);
 //	Route::get('register', ['uses' => 'PatientRegisterController@index', 'as' => 'patient.register']);
 
@@ -106,6 +106,8 @@ Route::prefix('patient')-> group(function (){
     Route::get('/doctorProfile/{id}','PatientController@getDoctorProfile');
 //    Route::get('/appointmentCalculate/{id}',['uses' => 'PatientController@appointmentCalculate', 'as' => 'patient.appointmentCalculate']);
     Route::get('/appointmentCalculate/{id}','AppointmentController@appointmentCalculate');
+    Route::get('/cancelAppointment/{id}','PatientProfileController@cancelAppointment');
+    Route::get('upcomingAppointments', ['uses' => 'PatientProfileController@upcomingAppointments', 'as' => 'patient.upcomingAppointments']);
 
 
 });

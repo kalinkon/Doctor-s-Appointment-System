@@ -27,16 +27,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($users as $item)
+                            @foreach($doctors as $item)
 
                                 <tr>
-                                    <td >{{$item->doctors->doctorName}}</td>
-                                    <td>{{$item->doctors->specializationDepartment}}</td>
-                                    <td> {{$item->doctors->educationalDegrees}}</td>
-                                    <td> {{$item->doctors->visitFee}}</td>
-                                    <td>{{$item->doctors->chamberAddress}}</td>
+                                    <td >{{$item->doctorName}}</td>
+                                    <td>{{$item->specializationDepartment}}</td>
+                                    <td> {{$item->educationalDegrees}}</td>
+                                    <td> {{$item->visitFee}}</td>
+                                    <td>{{$item->chamberAddress}}</td>
                                     <td>
-                                        <a href="{{url('/patient/doctorProfile/'.$item->id)}}" class="btn btn-primary">Profile</a>
+                                        <a href="{{url('/patient/doctorProfile/'.$item->user->id)}}" class="btn btn-primary">Profile</a>
                                         {{--<a href="{{url('/admin/rejectDoctor/'.$item->id)}}" class="btn btn-primary">Reject</a>--}}
                                     </td>
                                 </tr>

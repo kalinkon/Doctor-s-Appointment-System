@@ -3,44 +3,58 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @include('patient.sidebar')
-            @include('flash::message')
+            @include('doctor.sidebar')
 
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3>Upcoming Appointments</h3>
+                    <div class="panel-body text-center">
+                        <h1 align="center"> <strong> Your Upcoming Appointments </strong> </h1>
+                        @include('flash::message')
                     </div>
-                    <div class="panel-body">
-                        <table class="table table-bordered table-responsive">
+                </div>
+
+                <div class="panel panel-default" >
+                    <div class="panel-body" >
+                        <table class="table table-hover">
                             <thead>
-                            <tr class="success">
-                                <th>Hello</th>
-                                <th>Hello</th>
-                                <th>Hello</th>
-                                <th>Hello</th>
-                                <th>Hello</th>
-                                <th>Hello</th>
-                                <th>Hello</th>
+                            <tr>
+                                <th>Serial Number</th>
+                                <th>Doctor Name</th>
+                                <th>Appointment time</th>
+                                <th>Action </th>
 
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>333</td>
-                                <th>Hello</th>
-                                <td>333</td>
-                                <th>Hello asdksdjs adsj</th>
-                                <td>333 asjdjsj </td>
-                                <th>Hello hadjsnj</th>
-                                <th>Hello hadjsnj</th>
+                            @foreach( $appointments as $item )
 
-                            </tr>
+                                <tr>
+                                    <td >{{$item->serial}}</td>
+                                    <td>{{$item->doctor->user->name}}</td>
+                                    <td>{{$item->scheduledTime}} </td>
+
+                                    <td>
+{{--                                        <a href="{{url('/patient/doctorProfile/'.$item->id)}}" class="btn btn-primary">Profile</a>--}}
+                                        <a href='{{url('/patient/cancelAppointment/'.$item->id)}}' class="btn btn-primary"> Cancel </a>
+                                    </td>
+                                </tr>
+
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+@endsection
+
+@section('css')
+    <style rel="stylesheet">
+        .table > tbody > tr > td {
+            max-width: 100px;
+            overflow-wrap: break-word;
+        }
+    </style>
 @endsection

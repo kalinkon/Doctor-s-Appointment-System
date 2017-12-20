@@ -23,12 +23,15 @@ class PatientController extends Controller
 
 
 //        $doctors = Doctors::where('doctorName','LIKE',"%{$request->name}%")->get();
-        $users = User::where('role','Doctor')->where('name','LIKE',"%{$request->search}%")->get();
-//        $doctors = Doctors::where('doctorName','LIKE',"%{$request->search}%")
-//            ->orWhere('specializationDepartment','LIKE',"%{$request->search}%")->get();
+        $doctors = Doctors::where('doctorName','LIKE',"%{$request->search}%")->
+                        where('isActiveForScheduling',true)->get();
+//        dd($doctors[0]->user->name);
 
-        if(count($users)!=0){
-            return view('patient.doctorSearchList',['users'=>$users]);
+//        $doctors = Doctors::where('doctorName','LIKE',"%{$request->search}%")
+//            orWhere('specializationDepartment','LIKE',"%{$request->search}%")->get();
+
+        if(count($doctors)!=0){
+            return view('patient.doctorSearchList',['doctors'=>$doctors]);
 
         }
         else flash('Search result is empty');
