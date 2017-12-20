@@ -8,7 +8,7 @@
             <div class="col-md-9">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        @include('flash::message')
+{{--                        @include('flash::message')--}}
                         <div class="row">
                             <div class="col-lg-12" style="padding: 150px 40px;">
                                 <form class="form-horizontal" method="GET" action="{{route('patient.doctorSearchList')}}">

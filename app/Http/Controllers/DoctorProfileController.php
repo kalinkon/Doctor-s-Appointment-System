@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Appointments;
 use App\Doctors;
 use App\User;
+//use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Comment\Doc;
-
+use DateTime;
 
 class DoctorProfileController extends Controller
 {
@@ -26,7 +27,20 @@ class DoctorProfileController extends Controller
 //    }
     public function index()
     {
-        return view('doctor.profile');
+        $user = User::where('id',Auth::user()->id)->first();
+
+
+        $birthday = new DateTime($user->date_of_birth);
+        $currentDate = new DateTime(date("Y-m-d"));
+        $interval = $birthday->diff($currentDate);
+        $age= $interval->format('%Y');
+
+
+        $appointments = Appointments::where('doctor_id',$user->doctors->id)->where('isCancelled', true)->
+                        where('isbooked',true)->get() ;
+        $count= count($appointments);
+        return view('doctor.profile',['doctor'=>$user,'age'=>$age,'appointmentCounts'=>$count]);
+
     }
 
     public function list()

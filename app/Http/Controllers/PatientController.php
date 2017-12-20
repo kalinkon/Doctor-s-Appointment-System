@@ -57,12 +57,12 @@ class PatientController extends Controller
 
 
 
-    public function appointmentCalculate($id){
-//          {{ $id->id; }}
-        $doctor = Doctors::find($id);
-        dd($doctor);
-        return redirect()->route('patient.doctorSearchList');
-    }
+//    public function appointmentCalculate($id){
+////          {{ $id->id; }}
+//        $doctor = Doctors::find($id);
+//        dd($doctor);
+//        return redirect()->route('patient.doctorSearchList');
+//    }
 
     public function loadDoctorProfile(Request $request){
         $doctor = Doctors::where('id', $request->doctor)->first();

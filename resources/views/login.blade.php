@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 	<div class="">
-		@include('flash::message')
+{{--		@include('flash::message')--}}
 
 		<div class="well">
 			<form class="form-horizontal">

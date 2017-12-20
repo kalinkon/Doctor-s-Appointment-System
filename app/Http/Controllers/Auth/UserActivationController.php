@@ -46,9 +46,17 @@ class UserActivationController extends Controller
         $user_activation->user_id = $user->id;
         $user_activation->token = $activation_code;
 
-//        $smsBody = 'Welcome, '.$user->name.' Your password changing code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
-//        $smsManager = new SMSManager();
-//        $smsManager->sendSMS($user->mobileNo, $smsBody);
+
+        try {
+            $smsBody = 'Welcome, '.$user->name.' Your password changing code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
+            $smsManager = new SMSManager();
+            $smsManager->sendSMS($user->mobileNo, $smsBody);
+
+        } catch (Exception $e) {
+
+        }
+
+
         flash('Successfully, now please check your mobile for the activation code ')->success();
 
         $user_activation->save();
@@ -158,7 +166,7 @@ class UserActivationController extends Controller
 
         $user = User::where('mobileNo', $request->mobileNo)->first();
         if($user == null){
-            flash('There is no user with your email!')->error();
+            flash('There is no user with this mobile no!')->error();
             return redirect()->route('user.send_activation_code');
         }
 //        $user->is_activated = false;

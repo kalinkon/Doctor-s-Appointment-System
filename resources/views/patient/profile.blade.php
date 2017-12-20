@@ -9,7 +9,7 @@
           <div class="panel-heading">
             <h2>Profile</h2>
           </div>
-          @include('flash::message')
+          {{--@include('flash::message')--}}
           <div class="panel-body">
             <div class="row">
               <div class="col-md-8 col-sm-12">

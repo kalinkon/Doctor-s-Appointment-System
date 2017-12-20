@@ -61,8 +61,9 @@ class DoctorRegisterController extends Controller
 //            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'mobileNo' => 'required|regex:/(01)[0-9]{9}/|unique:users',
+
 //            'gender' => 'required',
-//            'registrationNo'=> 'required',
+            'registrationNo'=> 'required|unique:doctors',
 //            'educationalDegrees' => 'required',
 ////            'specializationDepartment' => 'required',
 //            'chamberAddress' => 'required',
@@ -136,9 +137,14 @@ class DoctorRegisterController extends Controller
 //        $array=['name' => $user->first_name, 'token' => $activation_code];
 //        Mail::to($user->email)->queue(new EmailVerification($array));
 
-//        $smsBody = 'Welcome, '.$user->name.' Your Activation code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
-//        $smsManager = new SMSManager();
-//        $smsManager->sendSMS($user->mobileNo, $smsBody);
+//        try {
+//            $smsBody = 'Welcome, '.$user->name.' Your Activation code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
+//            $smsManager = new SMSManager();
+//            $smsManager->sendSMS($user->mobileNo, $smsBody);
+//
+//        } catch (Exception $e) {
+//
+//        }
 
     }
 //    public function index()

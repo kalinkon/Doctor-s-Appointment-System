@@ -5,12 +5,12 @@
 	  	</div>
 	    <div class="panel-body">
             <ul class="tablist">
-                <li><a href="{{ URL::route('doctor.profile') }}">Profile</a></li>
+                <li><a href="{{ URL::route('doctor.profile') }}"> Your profile</a></li>
             </ul>
 	    </div>
 	    <div class="panel-body">
             <ul class="tablist">
-                <li><a href="{{ URL::route('doctor.setSchedule') }}">Set/Edit Appointment Scheduling System</a></li>
+                <li><a href="{{ URL::route('doctor.setSchedule') }}">Scheduling Settings</a></li>
             </ul>
 	    </div>
         <div class="panel-body">
@@ -24,11 +24,6 @@
             </ul>
 	    </div>
 
-	    <div class="panel-body">
-            <ul class="tablist">
-                <li><a href="{{ URL::route('doctor.appointmentHistory') }}">Appointment History</a></li>
-            </ul>
-	    </div>
 
         {{--<div class="panel-body">--}}
             {{--<ul class="tablist">--}}

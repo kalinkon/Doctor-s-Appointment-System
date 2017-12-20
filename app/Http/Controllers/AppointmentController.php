@@ -11,6 +11,7 @@ use App\Patients;
 use App\Doctors;
 use App\SchedulingSetting;
 use Illuminate\Support\Facades\Auth;
+use Nexmo\Client\Exception\Exception;
 use PhpParser\Comment\Doc;
 use DateTime;
 use Illuminate\Support\Facades\Validator;
@@ -60,12 +61,15 @@ class AppointmentController extends Controller
         $appointment->isCancelled = false;
         $appointment->save();
 
-        $smsBody = 'Congratulations, '.Auth::user()->name.'. Your serial no is '.$appointment->serial.' for '
-                                        .$appointment->doctor->doctorName.' and your scheduled time is '.$appointment->scheduledTime.'. 
-                                         please report 30 mins before scheduled time';
-        $smsManager = new SMSManager();
-        $smsManager->sendSMS($user->mobileNo, $smsBody);
+        try {
+            $smsBody = 'Congratulations, ' . Auth::user()->name . '. Your serial no is ' . $appointment->serial . ' for '
+                . $appointment->doctor->doctorName . ' and your scheduled time is ' . $appointment->scheduledTime . '. 
+                                             please report 30 mins before scheduled time';
+            $smsManager = new SMSManager();
+            $smsManager->sendSMS($user->mobileNo, $smsBody);
+        }catch (Exception $e){
 
+        }
 
         flash('your serial is set check your mobile');
         return redirect()->route('patient.upcomingAppointments');

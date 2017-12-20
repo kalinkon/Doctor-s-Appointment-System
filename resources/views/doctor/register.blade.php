@@ -7,7 +7,7 @@
 			<div class="panel-heading" align="center" ><strong>Doctor's Registration</strong></div>
 			<form class="form-horizontal"method= "POST" action="{{ route('registerDoctor') }}">
 				{{ csrf_field() }}
-				@include('flash::message')
+				{{--@include('flash::message')--}}
 			  <div class="form-group">
 			    <label for="name" class="col-sm-2 control-label">Name</label>
 			    <div class="col-sm-10">
@@ -67,7 +67,7 @@
 			    <label for="department" class="col-sm-2 control-label">Select Department</label>
 			    <div class="col-sm-3">
 			      <select class="form-control" name="specializationDepartment">
-					  <option value="" disabled="disabled">Choose Department</option>
+					  <option value="" disabled="disabled" selected>Choose Department</option>
 					  @foreach($departmentArray as $data)
 						  <option value="{{$data->id}}">{{$data->departmentName}}</option>
 					  @endforeach
@@ -92,7 +92,8 @@
 			    <div class="col-sm-3">
 
 			      <select class="form-control" name="gender" required>
-			        <option>Male</option>
+					  <option selected disabled>Choose gender</option>
+					  <option>Male</option>
 			        <option>Female</option>
 			        <option>Other</option>
 			      </select>
@@ -111,11 +112,17 @@
 
 
 
-			  <div class="form-group">
+			  <div class="form-group{{ $errors->has('registrationNo') ? ' has-error' : '' }}">
 			    <label for="reg_no" class="col-sm-2 control-label">Registration number</label>
 			    <div class="col-sm-10">
 			      <input type="number" class="form-control" id="reg_no" placeholder="registration number" name="registrationNo" required >
-			    </div>
+					@if ($errors->has('registrationNo'))
+						<span class="help-block">
+							<strong>{{ $errors->first('RegistrationNo') }} already taken</strong>
+
+						</span>
+					@endif
+				</div>
 			  </div>
 
 				<div class="form-group">

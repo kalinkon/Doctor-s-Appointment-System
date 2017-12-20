@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointments;
 use App\DayOff;
 use Illuminate\Http\Request;
 use App\User;
@@ -31,6 +32,9 @@ class DoctorController extends Controller
     {
         $user = User::where('id', Auth::user()->id)->first();
         $doctor = $user->doctors;
+
+
+
         return view('doctor.doctor_profile_edit', ['user' => $user,'doctor' => $doctor]);
     }
 
@@ -42,6 +46,7 @@ class DoctorController extends Controller
         $day_offs->day_off_date = $request->day_off_date;
         $day_offs->save();
         $user ->save();
+        flash('you have taken a leave on this date : '.$day_offs->day_off_date );
         return redirect()->route('doctor.dashboard');
     }
 

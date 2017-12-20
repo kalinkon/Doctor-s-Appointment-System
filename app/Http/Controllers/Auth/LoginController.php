@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 
@@ -56,11 +58,33 @@ class LoginController extends Controller
         );
     }
 
+//    protected function sendFailedLoginResponse(Request $request)
+//    {
+//        throw ValidationException::withMessages([
+//            $this->username() => [trans('Login failed')],
+//        ]);
+//    }
+
     protected function sendFailedLoginResponse(Request $request)
     {
-        throw ValidationException::withMessages([
-            $this->username() => [trans('Login failed: make sure your account is Activated')],
-        ]);
+
+        if ( ! User::where('mobileNo', $request->mobileNo)->first() ) {
+            return redirect()->back()
+                ->withInput($request->only($this->username(), 'remember'))
+                ->withErrors([
+                    $this->username() => Lang::get('Mobile number did not match or you are not activated' ),
+                ]);
+        }
+
+        if ( ! User::where('mobileNo', $request->mobileNo)->where('password', bcrypt($request->password))->first() ) {
+            return redirect()->back()
+                ->withInput($request->only($this->username(), 'remember'))
+                ->withErrors([
+                    'password' => Lang::get('Password did not match or you are not activated'),
+                ]);
+        }
+
+
     }
 
     protected function authenticated(Request $request, $user)

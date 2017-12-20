@@ -11,7 +11,6 @@
                         <div class="panel-heading">
                             <h3>Take an off day here</h3>
                         </div>
-                        @include('flash::message')
                         <form class="form-horizontal"method= "POST" action="{{ route('doctor.dayOff') }}">
                             {{ csrf_field() }}
 

@@ -8,7 +8,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body text-center">
                         <h1>Search results</h1>
-                        @include('flash::message')
+                        {{--@include('flash::message')--}}
                     </div>
                 </div>
 

@@ -46,13 +46,16 @@
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <script type="text/javascript" src= {{ asset('js/bootstrap-timepicker.js') }}></script>
+    <script>
+        $('div.alert').not('.alert-important').delay(4000).fadeOut(500);
+    </script>
 
     @yield('script')
 
     </body>
     </html>
 
-
+    @include('flash::message')
     @yield('content')
 </div>
 

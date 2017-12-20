@@ -10,7 +10,7 @@
                     <div class="panel-heading">
                         <h3>Set Appointment Scheduling Constraints</h3>
                     </div>
-                    @include('flash::message')
+                    {{--@include('flash::message')--}}
                     <div class="panel-body">
 
                         <form method= "POST" action="{{route('doctor.setSchedule')}}">

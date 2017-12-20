@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body text-center">
                         <h1 align="center"> <strong> Your Upcoming Appointments </strong> </h1>
-                        @include('flash::message')
+                        {{--@include('flash::message')--}}
                     </div>
                 </div>
 

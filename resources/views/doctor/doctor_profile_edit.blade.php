@@ -7,7 +7,7 @@
                 <div class="panel-heading" align="center" ><strong>Doctor's Registration</strong></div>
                 <form class="form-horizontal">
                     {{ csrf_field() }}
-                    @include('flash::message')
+                    {{--@include('flash::message')--}}
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">

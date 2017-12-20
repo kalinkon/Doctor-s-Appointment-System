@@ -23,6 +23,7 @@
         @else
                 @include('inc.navbar')
         @endguest
+                @include('flash::message')
         @yield('content')
     </div>
 
