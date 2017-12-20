@@ -151,7 +151,6 @@ class AppointmentController extends Controller
 
                 if($tryEnd->lte($closingTime))
                     return $this->saveAppointment($doctor, $tryStart, $patientDuration, $serial);
-
             }
 
             $now = clone $next;

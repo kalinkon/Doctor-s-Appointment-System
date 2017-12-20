@@ -11,22 +11,23 @@ class Appointments extends Model
 
 
     protected $fillable = [
-        'doctor_id', 'patient_id' , 'assistant_id', 'scheduledTime' , 'endTime' , 'appointmentDuration',
+        'doctor_id', 'patient_id' ,  'scheduledTime' , 'endTime' , 'appointmentDuration',
         'isCurrentlyActive','diseaseSymptom', 'medication' , 'tips' ,'isbooked','isCancelled','serial'
 
     ];
 
-    public function doctor()
+    public function doctors()
     {
         return $this->belongsTo(Doctors::class);
     }
-    public function assistant()
+    public function assistants()
     {
-        return $this->belongsTo(Assistants::class);
+        return $this->hasOne(Assistants::class);
     }
     public function patient()
     {
         return $this->belongsTo(Patients::class);
     }
+
 
 }

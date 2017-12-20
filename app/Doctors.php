@@ -38,7 +38,7 @@ class Doctors extends Model
     public function dayOff(){
         return $this->hasOne(DayOff::class);
     }
-    public function appointment()
+    public function appointments()
     {
         return $this->hasMany(Appointments::class);
     }

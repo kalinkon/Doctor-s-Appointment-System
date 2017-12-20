@@ -15,16 +15,16 @@ class Assistants extends Model
         ,
     ];
 
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function appointment()
+
+    public function appointments()
     {
         return $this->hasMany(Appointments::class);
     }
-
 
 
 }

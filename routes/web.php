@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('commonHome');
 });
 
+
+Route::get('doctorSearchList',['uses' => 'CommonHomeController@showDoctorSearchList', 'as' => 'doctorSearchListGuest']);
+Route::get('redirectToLogin',['uses' => 'CommonHomeController@redirectToLogin', 'as' => 'redirectToLogin']);
+
 Route::prefix('user')-> group(function (){
 
 
@@ -74,6 +78,8 @@ Route::prefix('doctor')-> group(function (){
 
 //	Route::get('register', ['uses' => 'DoctorRegisterController@index', 'as' => 'doctor.register']);
     Route::get('list', ['uses' => 'DoctorProfileController@list', 'as' => 'doctor.list']);
+    Route::get('/cancelAppointment/{id}','DoctorProfileController@cancelAppointment');
+
 
 });
 

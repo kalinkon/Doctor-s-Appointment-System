@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointments;
 use App\Doctors;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PhpParser\Comment\Doc;
 
 
@@ -47,8 +49,36 @@ class DoctorProfileController extends Controller
     }
     public function upcomingAppointments()
     {
-        return view('doctor.upcomingAppointments');
+        $users = Auth::user();
+//        $appointments=Appointments::where('doctor_id',$user->doctors->id)->
+//                                    where('isbooked',false)->
+//                                    where('isCancelled',false)->get();
+        $appointments=Appointments::where('doctor_id',$users->doctors->id)->
+                                    where('scheduledTime','>',now())->
+                                    where('isbooked',false)->
+                                    where('isCancelled',false)->get();
+//        dd($appointments[0]->patient->user->name);
+        $cnt = count($appointments);
+        if($cnt==0){
+            flash('No Upcoming Appointments');
+            return view('doctor.upcomingAppointments',['appointments'=>$appointments]);
+        }
+        else{
+            return view('doctor.upcomingAppointments',['appointments'=>$appointments]);
+
+        }
+
     }
+    public function cancelAppointment( $id)
+    {
+        $appointment = Appointments::where('id',$id)->first();
+        $appointment->isCancelled=true;
+        $appointment->save();
+
+        flash('Appointment with '.$appointment->patient->user->name.' has been cancelled')->success();
+        return redirect()->route('doctor.upcomingAppointments');
+    }
+
     public function appointmentHistory()
     {
         return view('doctor.appointmentHistory');

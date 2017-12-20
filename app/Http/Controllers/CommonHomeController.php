@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
+use App\Doctors;
 use Illuminate\Http\Request;
 
 class CommonHomeController extends Controller
@@ -14,6 +15,27 @@ class CommonHomeController extends Controller
     public function index()
     {
         return view('commonHome');
+    }
+    public function redirectToLogin(){
+        flash('please login to see doctors profile and take appointments');
+        return redirect(route('login'));
+    }
+
+    public function showDoctorSearchList(Request $request){
+
+
+//        $doctors = Doctors::where('doctorName','LIKE',"%{$request->name}%")->get();
+        $users = User::where('role','Doctor')->where('name','LIKE',"%{$request->search}%")->get();
+//        $doctors = Doctors::where('doctorName','LIKE',"%{$request->search}%")
+//            ->orWhere('specializationDepartment','LIKE',"%{$request->search}%")->get();
+
+        if(count($users)!=0){
+            return view('doctor_search_list_guest',['users'=>$users]);
+
+        }
+        else flash('Search result is empty');
+//
+        return redirect()->route("commonHome");
     }
 
     /**

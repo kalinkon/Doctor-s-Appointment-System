@@ -18,8 +18,8 @@ class SpecializationDepartment extends Model
     protected $table = 'specialization_department';
     protected $fillable = ['departmentName' ];
 
-    public function departments(){
-        return $this->hasMany(Doctors::class);
+    public function doctors(){
+        return $this->belongsTo(Doctors::class);
     }
 
 
