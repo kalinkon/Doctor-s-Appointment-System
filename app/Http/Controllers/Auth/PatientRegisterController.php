@@ -118,14 +118,14 @@ class PatientRegisterController extends Controller
 
 //        $array=['name' => $user->first_name, 'token' => $activation_code];
 //        Mail::to($user->email)->queue(new EmailVerification($array));
-//        try {
-//            $smsBody = 'Welcome, '.$user->name.' Your Activation code is '.$activation_code.'. Please activate your account with the code. Thank You. ';
-//            $smsManager = new SMSManager();
-//            $smsManager->sendSMS($user->mobileNo, $smsBody);
-//
-//        } catch (Exception $e) {
-//
-//        }
+        try {
+            $smsBody = 'Welcome, '.$user->name.' Your Activation code is '.$activation_code.'. Please activate your account with the code. Thank You. ';
+            $smsManager = new SMSManager();
+            $smsManager->sendSMS($user->mobileNo, $smsBody);
+
+        } catch (Exception $e) {
+
+        }
 
 
     }

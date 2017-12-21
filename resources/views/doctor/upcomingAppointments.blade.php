@@ -34,7 +34,7 @@
                                 <tr>
                                     <td >{{$item->serial}}</td>
                                     <td>{{$item->patient->user->name}}</td>
-                                    <td>{{$item->scheduledTime}} min</td>
+                                    <td>{{Carbon\Carbon::createFromFormat('Y-m-d g:i:s', $item->scheduledTime)->format('g:i a d-m-Y ')}}</td>
                                     <td>{{$item->appointmentDuration}} min</td>
                                     <td>{{$item->patient->user->gender}}</td>
                                     <td>{{$item->patient->user->mobileNo}}</td>

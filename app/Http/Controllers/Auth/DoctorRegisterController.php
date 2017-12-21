@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+use Nexmo\Client\Exception\Exception;
 
 class DoctorRegisterController extends Controller
 {
@@ -137,14 +138,14 @@ class DoctorRegisterController extends Controller
 //        $array=['name' => $user->first_name, 'token' => $activation_code];
 //        Mail::to($user->email)->queue(new EmailVerification($array));
 
-//        try {
-//            $smsBody = 'Welcome, '.$user->name.' Your Activation code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
-//            $smsManager = new SMSManager();
-//            $smsManager->sendSMS($user->mobileNo, $smsBody);
-//
-//        } catch (Exception $e) {
-//
-//        }
+        try {
+            $smsBody = 'Welcome, '.$user->name.' Your Activation code is '.$activation_code.'. Please activate your account http://127.0.0.1/user/activation. Thank You. ';
+            $smsManager = new SMSManager();
+            $smsManager->sendSMS($user->mobileNo, $smsBody);
+
+        } catch (Exception $e) {
+
+        }
 
     }
 //    public function index()

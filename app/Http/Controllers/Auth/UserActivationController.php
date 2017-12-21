@@ -19,6 +19,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Validation\ValidationException;
 use App\SMS\SMSManager;
+use Nexmo\Client\Exception\Exception;
 
 
 class UserActivationController extends Controller

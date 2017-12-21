@@ -6,7 +6,8 @@ use App\Doctors;
 use App\SpecializationDepartment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use DateTime;
+use App\User;
 class PatientProfileController extends Controller
 {
     /**
@@ -16,7 +17,32 @@ class PatientProfileController extends Controller
      */
     public function index()
     {
-        return view('patient.profile');
+        $user = User::where('id',Auth::user()->id)->first();
+
+
+        $birthday = new DateTime($user->date_of_birth);
+        $currentDate = new DateTime(date("Y-m-d"));
+        $interval = $birthday->diff($currentDate);
+        $age= $interval->format('%Y');
+
+
+        $appointments = Appointments::where('patient_id',$user->patients->id)->
+        where('isbooked',true)->get() ;
+        $count= count($appointments);
+
+        $isAttended = Appointments::where('patient_id',$user->patients->id)->where('isbooked',true)->
+                            where('scheduledTime','<',now())->get();
+        $isAttendedCount=count($isAttended);
+        $pastAppointments = Appointments::where('patient_id',$user->patients->id)->
+        where('scheduledTime','<',now())->get();
+        $pastAppointmentsCount = count($pastAppointments);
+        $percentage =null;
+        if($pastAppointmentsCount!=0){
+            $percentage = $isAttended*100/$pastAppointmentsCount;
+        }
+
+        return view('patient.profile',['patient'=>$user,'age'=>$age,'appointmentCounts'=>$count,'percentage'=>$percentage]);
+
     }
 
     public function dash()
@@ -62,9 +88,12 @@ class PatientProfileController extends Controller
 
     }
     public function cancelAppointment( $id)
+
     {
+
         $appointment = Appointments::where('id',$id)->first();
         $appointment->isCancelled=true;
+
         $appointment->save();
 
         flash('Appointment with '.$appointment->doctor->user->name.' has been cancelled')->success();
@@ -73,8 +102,29 @@ class PatientProfileController extends Controller
 
     public function liveChamber()
     {
-        return view('patient.liveChamber');
+        return redirect(route('patient.upcomingAppointments'));
     }
+    public function doctorLiveStatus($id)
+    {
+        $userID = $id;
+        $userDoctor = User::where('id',$userID)->first();
+//        dd($userDoctor);
+//        $use=Doctors::where('user_id',$userDoctor->id)->where('isChamberCurrentlyOpen',true)->first();
+        $appaintment = null;
+        $user = User::where('id',Auth::user()->id)->first();
+         $usersAppointment=Appointments::where('patient_id',$user->patients->id)->where('scheduledTime','>',now())->
+         where('isCancelled',false)->first();
+
+//        dd($usersAppintment);
+        if($userDoctor->doctors->isChamberCurrentlyOpen == 0){
+            $appointment = Appointments::where('doctor_id',$userDoctor->id)->where('isCurrentlyActive',true)->first();
+
+        }
+        return view('patient.liveChamber',['appointment'=>$appointment,'appointmentOfCurrentUser'=>$usersAppointment]);
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      *

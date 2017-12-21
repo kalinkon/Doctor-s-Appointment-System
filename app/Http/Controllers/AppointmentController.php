@@ -59,12 +59,13 @@ class AppointmentController extends Controller
         $appointment->serial = $serial;
         $appointment->isbooked = false;
         $appointment->isCancelled = false;
+        $temp = Carbon::createFromFormat('Y-m-d g:i:s', $appointment->scheduledTime)->format('g:i a d-m-Y ');
         $appointment->save();
 
         try {
             $smsBody = 'Congratulations, ' . Auth::user()->name . '. Your serial no is ' . $appointment->serial . ' for '
-                . $appointment->doctor->doctorName . ' and your scheduled time is ' . $appointment->scheduledTime . '. 
-                                             please report 30 mins before scheduled time';
+                . $appointment->doctor->doctorName . ' and your scheduled time is ' . $temp .
+                '. thank you';
             $smsManager = new SMSManager();
             $smsManager->sendSMS($user->mobileNo, $smsBody);
         }catch (Exception $e){

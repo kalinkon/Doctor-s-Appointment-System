@@ -8,7 +8,7 @@
                 {{ csrf_field() }}
                 <div class="input-group">
                     <input type="text" name="search" required class="form-control"
-                           placeholder="Enter disease, specialization department or doctor's name ">
+                           placeholder="Search by area, specialization department or doctor's name ">
                     <span class="input-group-btn">
                         <button class="btn btn-secondary" type="submit">Go!</button>
                     </span>

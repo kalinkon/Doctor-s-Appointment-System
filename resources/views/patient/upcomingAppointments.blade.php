@@ -21,18 +21,22 @@
                                 <th>Serial Number</th>
                                 <th>Doctor Name</th>
                                 <th>Appointment time</th>
+                                <th>Chamber Status</th>
                                 <th>Action </th>
 
                             </tr>
                             </thead>
                             <tbody>
+
                             @foreach( $appointments as $item )
 
                                 <tr>
                                     <td >{{$item->serial}}</td>
                                     <td>{{$item->doctor->user->name}}</td>
-                                    <td>{{$item->scheduledTime}} </td>
-
+                                    <td>{{Carbon\Carbon::createFromFormat('Y-m-d g:i:s', $item->scheduledTime)->format('g:i a d-m-Y ')}} </td>
+                                    <td>
+                                        <a href='{{url('/patient/liveChamber/'.$item->doctor->user->id)}}' class="btn btn-primary"> G0! </a>
+                                    </td>
                                     <td>
 {{--                                        <a href="{{url('/patient/doctorProfile/'.$item->id)}}" class="btn btn-primary">Profile</a>--}}
                                         <a href='{{url('/patient/cancelAppointment/'.$item->id)}}' class="btn btn-primary"> Cancel </a>

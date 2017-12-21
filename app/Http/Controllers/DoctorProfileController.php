@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Appointments;
 use App\Doctors;
+use App\SMS\SMSManager;
 use App\User;
 //use Faker\Provider\DateTime;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Nexmo\Client\Exception\Exception;
 use PhpParser\Comment\Doc;
 use DateTime;
 
@@ -36,7 +39,7 @@ class DoctorProfileController extends Controller
         $age= $interval->format('%Y');
 
 
-        $appointments = Appointments::where('doctor_id',$user->doctors->id)->where('isCancelled', true)->
+        $appointments = Appointments::where('doctor_id',$user->doctors->id)->
                         where('isbooked',true)->get() ;
         $count= count($appointments);
         return view('doctor.profile',['doctor'=>$user,'age'=>$age,'appointmentCounts'=>$count]);
@@ -87,6 +90,18 @@ class DoctorProfileController extends Controller
     {
         $appointment = Appointments::where('id',$id)->first();
         $appointment->isCancelled=true;
+        $temp = Carbon::createFromFormat('Y-m-d g:i:s', $appointment->scheduledTime)->format('g:i a d-m-Y ');
+
+        try {
+            $smsBody = 'Dear ' .$appointment->patient->user->name . '. Your serial no ' . $appointment->serial . ' for '
+                . $appointment->doctor->doctorName . ' scheduled at' . $temp .
+                '. has been cancelled by the doctor.';
+            $smsManager = new SMSManager();
+            $smsManager->sendSMS($appointment->patient->user->mobileNo, $smsBody);
+        }catch (Exception $e){
+
+        }
+
         $appointment->save();
 
         flash('Appointment with '.$appointment->patient->user->name.' has been cancelled')->success();

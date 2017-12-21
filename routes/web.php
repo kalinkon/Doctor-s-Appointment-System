@@ -102,6 +102,9 @@ Route::group(["middleware" => ['auth', 'patient']], function () {
         Route::post('doctorProfile',['uses' => 'PatientController@loadDoctorProfile', 'as' => 'patient.doctorProfile']);
 //    Route::get('doctorProfile',['uses' => 'PatientController@getDoctorProfile', 'as' => 'patient.doctorProfile']);
         Route::get('/doctorProfile/{id}','PatientController@getDoctorProfile');
+        Route::get('/liveChamber/{id}','PatientProfileController@doctorLiveStatus');
+
+
 //    Route::get('/appointmentCalculate/{id}',['uses' => 'PatientController@appointmentCalculate', 'as' => 'patient.appointmentCalculate']);
         Route::get('/appointmentCalculate/{id}','AppointmentController@appointmentCalculate');
         Route::get('/cancelAppointment/{id}','PatientProfileController@cancelAppointment');

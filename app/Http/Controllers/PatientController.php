@@ -24,7 +24,9 @@ class PatientController extends Controller
 
 //        $doctors = Doctors::where('doctorName','LIKE',"%{$request->name}%")->get();
         $doctors = Doctors::where('doctorName','LIKE',"%{$request->search}%")->
-                        where('isActiveForScheduling',true)->get();
+                            orWhere('chamberAddress','LIKE',"%{$request->search}%")->
+                            orWhere('specializationDepartment','LIKE',"%{$request->search}%")->
+                            where('isActiveForScheduling',true)->get();
 //        dd($doctors[0]->user->name);
 
 //        $doctors = Doctors::where('doctorName','LIKE',"%{$request->search}%")
